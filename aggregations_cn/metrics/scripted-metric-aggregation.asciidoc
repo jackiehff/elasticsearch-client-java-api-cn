@@ -1,0 +1,110 @@
+[[java-aggs-metrics-scripted-metric]]
+==== 脚本度量聚合
+
+下面展示了如何使用 Java API 进行{ref}/search-aggregations-metrics-scripted-metric-aggregation.html[脚本度量聚合].
+
+如果你想要在一个嵌入式的数据节点上运行 Groovy 脚本, 不要忘了将 Groovy 添加到你的类路径中(例如用于单元测试).
+例如, 你可以将下面的依赖添加到 Maven 的 `pom.xml` 文件中:
+
+[source,xml]
+--------------------------------------------------
+<dependency>
+    <groupId>org.codehaus.groovy</groupId>
+    <artifactId>groovy-all</artifactId>
+    <version>2.3.2</version>
+    <classifier>indy</classifier>
+</dependency>
+--------------------------------------------------
+
+
+===== 创建聚合请求
+
+下面是一个创建聚合请求的代码示例:
+
+[source,java]
+--------------------------------------------------
+ScriptedMetricAggregationBuilder aggregation = AggregationBuilders
+    .scriptedMetric("agg")
+    .initScript(new Script("params._agg.heights = []"))
+    .mapScript(new Script("params._agg.heights.add(doc.gender.value == 'male' ? doc.height.value : -1.0 * doc.height.value)"));
+--------------------------------------------------
+
+你也可以指定一个 `combine` 脚本, 它将在每个分片上执行:
+
+[source,java]
+--------------------------------------------------
+ScriptedMetricAggregationBuilder aggregation = AggregationBuilders
+    .scriptedMetric("agg")
+    .initScript(new Script("params._agg.heights = []"))
+    .mapScript(new Script("params._agg.heights.add(doc.gender.value == 'male' ? doc.height.value : -1.0 * doc.height.value)"))
+    .combineScript(new Script("double heights_sum = 0.0; for (t in params._agg.heights) { heights_sum += t } return heights_sum"));
+--------------------------------------------------
+
+你也可以指定一个 `reduce` 脚本, 它将在节点上执行并得到下面这个请求:
+
+[source,java]
+--------------------------------------------------
+ScriptedMetricAggregationBuilder aggregation = AggregationBuilders
+    .scriptedMetric("agg")
+    .initScript(new Script("params._agg.heights = []"))
+    .mapScript(new Script("params._agg.heights.add(doc.gender.value == 'male' ? doc.height.value : -1.0 * doc.height.value)"))
+    .combineScript(new Script("double heights_sum = 0.0; for (t in params._agg.heights) { heights_sum += t } return heights_sum"))
+    .reduceScript(new Script("double heights_sum = 0.0; for (a in params._aggs) { heights_sum += a } return heights_sum"));
+--------------------------------------------------
+
+
+===== 使用聚合响应
+
+引入聚合定义类:
+
+[source,java]
+--------------------------------------------------
+import org.elasticsearch.search.aggregations.bucket.terms.Terms;
+import org.elasticsearch.search.aggregations.metrics.tophits.TopHits;
+--------------------------------------------------
+
+[source,java]
+--------------------------------------------------
+// sr is here your SearchResponse object
+ScriptedMetric agg = sr.getAggregations().get("agg");
+Object scriptedResult = agg.aggregation();
+logger.info("scriptedResult [{}]", scriptedResult);
+--------------------------------------------------
+
+请注意, 返回结果取决于你构建的脚本.对于第一个示例, 基本输出如下:
+
+[source,text]
+--------------------------------------------------
+scriptedResult object [ArrayList]
+scriptedResult [ {
+"heights" : [ 1.122218480146643, -1.8148918111233887, -1.7626731575142909, ... ]
+}, {
+"heights" : [ -0.8046067304119863, -2.0785486707864553, -1.9183567430207953, ... ]
+}, {
+"heights" : [ 2.092635728868694, 1.5697545960886536, 1.8826954461968808, ... ]
+}, {
+"heights" : [ -2.1863201099468403, 1.6328549117346856, -1.7078288405893842, ... ]
+}, {
+"heights" : [ 1.6043904836424177, -2.0736538674414025, 0.9898266674373053, ... ]
+} ]
+--------------------------------------------------
+
+第二个示例输出如下:
+
+[source,text]
+--------------------------------------------------
+scriptedResult object [ArrayList]
+scriptedResult [-41.279615707402876,
+                -60.88007362339038,
+                38.823270659734256,
+                14.840192739445632,
+                11.300902755741326]
+--------------------------------------------------
+
+最后一个示例输出如下:
+
+[source,text]
+--------------------------------------------------
+scriptedResult object [Double]
+scriptedResult [2.171917696507009]
+--------------------------------------------------

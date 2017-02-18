@@ -1,0 +1,77 @@
+[[java-aggs-metrics-tophits]]
+==== Top Hits聚合
+
+下面展示了如何使用 Java API 进行{ref}/search-aggregations-metrics-top-hits-aggregation.html[Top Hits聚合].
+
+
+===== 创建聚合请求
+
+下面是一个创建聚合请求的代码示例:
+
+[source,java]
+--------------------------------------------------
+AggregationBuilder aggregation =
+    AggregationBuilders
+        .terms("agg").field("gender")
+        .subAggregation(
+            AggregationBuilders.topHits("top")
+        );
+--------------------------------------------------
+
+你可以使用大部分的选项用于标准搜索, 比如 `from`, `size`, `sort`, `highlight`, `explain` 等等
+
+[source,java]
+--------------------------------------------------
+AggregationBuilder aggregation =
+    AggregationBuilders
+        .terms("agg").field("gender")
+        .subAggregation(
+            AggregationBuilders.topHits("top")
+                .explain(true)
+                .size(1)
+                .from(10)
+        );
+--------------------------------------------------
+
+===== 使用聚合响应
+
+引入聚合定义类:
+
+[source,java]
+--------------------------------------------------
+import org.elasticsearch.search.aggregations.bucket.terms.Terms;
+import org.elasticsearch.search.aggregations.metrics.tophits.TopHits;
+--------------------------------------------------
+
+[source,java]
+--------------------------------------------------
+// sr is here your SearchResponse object
+Terms agg = sr.getAggregations().get("agg");
+
+// For each entry
+for (Terms.Bucket entry : agg.getBuckets()) {
+    String key = entry.getKey();                    // bucket key
+    long docCount = entry.getDocCount();            // Doc count
+    logger.info("key [{}], doc_count [{}]", key, docCount);
+
+    // We ask for top_hits for each bucket
+    TopHits topHits = entry.getAggregations().get("top");
+    for (SearchHit hit : topHits.getHits().getHits()) {
+        logger.info(" -> id [{}], _source [{}]", hit.getId(), hit.getSourceAsString());
+    }
+}
+--------------------------------------------------
+
+第一个示例会产生以下基本输出:
+
+[source,text]
+--------------------------------------------------
+key [male], doc_count [5107]
+ -> id [AUnzSZze9k7PKXtq04x2], _source [{"gender":"male",...}]
+ -> id [AUnzSZzj9k7PKXtq04x4], _source [{"gender":"male",...}]
+ -> id [AUnzSZzl9k7PKXtq04x5], _source [{"gender":"male",...}]
+key [female], doc_count [4893]
+ -> id [AUnzSZzM9k7PKXtq04xy], _source [{"gender":"female",...}]
+ -> id [AUnzSZzp9k7PKXtq04x8], _source [{"gender":"female",...}]
+ -> id [AUnzSZ0W9k7PKXtq04yS], _source [{"gender":"female",...}]
+--------------------------------------------------

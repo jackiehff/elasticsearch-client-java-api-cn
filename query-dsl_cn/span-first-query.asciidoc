@@ -1,0 +1,14 @@
+[[java-query-dsl-span-first-query]]
+==== Span First Query
+
+参见 {ref}/query-dsl-span-first-query.html[Span First Query]
+
+[source,java]
+--------------------------------------------------
+QueryBuilder qb = spanFirstQuery(
+    spanTermQuery("user", "kimchy"),            <1>
+    3                                           <2>
+);
+--------------------------------------------------
+<1> 查询
+<2> max end position

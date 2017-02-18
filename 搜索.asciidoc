@@ -1,0 +1,244 @@
+[[java-search]]
+== 搜索API
+
+搜索API允许用户执行搜索查询并返回匹配该查询的搜索命中结果. 它可以跨一个或多个索引以及跨一个或多个类型执行. 可以使用<< java-query-dsl，Java查询API >> 提供查询.
+搜索请求的正文使用 `SearchSourceBuilder` 构建. 下面是一个代码示例:
+
+[source,java]
+--------------------------------------------------
+import org.elasticsearch.action.search.SearchResponse;
+import org.elasticsearch.action.search.SearchType;
+import org.elasticsearch.index.query.QueryBuilders.*;
+--------------------------------------------------
+
+[source,java]
+--------------------------------------------------
+SearchResponse response = client.prepareSearch("index1", "index2")
+        .setTypes("type1", "type2")
+        .setSearchType(SearchType.DFS_QUERY_THEN_FETCH)
+        .setQuery(QueryBuilders.termQuery("multi", "test"))                 // Query
+        .setPostFilter(QueryBuilders.rangeQuery("age").from(12).to(18))     // Filter
+        .setFrom(0).setSize(60).setExplain(true)
+        .get();
+--------------------------------------------------
+
+请注意, 所有的参数都是可选的. 下面是你可以写出来的最短的搜索调用:
+
+[source,java]
+--------------------------------------------------
+// MatchAll on the whole cluster with all default options
+SearchResponse response = client.prepareSearch().get();
+--------------------------------------------------
+
+NOTE:   尽管 Java API 定义了额外的搜索类型 QUERY_AND_FETCH 和
+        DFS_QUERY_AND_FETCH, 这些模式也都经过了内部优化, API的使用者不需要显示地指定搜索类型.
+
+想要了解有关搜索操作的更多信息, 请查阅 REST {ref}/search.html[搜索] 文档.
+
+
+[[java-search-scrolling]]
+=== 在Java中使用滚动
+
+首先请阅读 {ref}/search-request-scroll.html[scroll 文档]!
+
+[source,java]
+--------------------------------------------------
+import static org.elasticsearch.index.query.QueryBuilders.*;
+
+QueryBuilder qb = termQuery("multi", "test");
+
+SearchResponse scrollResp = client.prepareSearch(test)
+        .addSort(FieldSortBuilder.DOC_FIELD_NAME, SortOrder.ASC)
+        .setScroll(new TimeValue(60000))
+        .setQuery(qb)
+        .setSize(100).get(); //max of 100 hits will be returned for each scroll
+//Scroll until no hits are returned
+do {
+    for (SearchHit hit : scrollResp.getHits().getHits()) {
+        //Handle the hit...
+    }
+
+    scrollResp = client.prepareSearchScroll(scrollResp.getScrollId()).setScroll(new TimeValue(60000)).execute().actionGet();
+} while(scrollResp.getHits().getHits().length != 0); // Zero hits mark the end of the scroll and the while loop.
+--------------------------------------------------
+
+[[java-search-msearch]]
+=== MultiSearch API
+
+参见 {ref}/search-multi-search.html[MultiSearch API 查询]文档
+
+[source,java]
+--------------------------------------------------
+SearchRequestBuilder srb1 = client
+    .prepareSearch().setQuery(QueryBuilders.queryStringQuery("elasticsearch")).setSize(1);
+SearchRequestBuilder srb2 = client
+    .prepareSearch().setQuery(QueryBuilders.matchQuery("name", "kimchy")).setSize(1);
+
+MultiSearchResponse sr = client.prepareMultiSearch()
+        .add(srb1)
+        .add(srb2)
+        .get();
+
+// You will get all individual responses from MultiSearchResponse#getResponses()
+long nbHits = 0;
+for (MultiSearchResponse.Item item : sr.getResponses()) {
+    SearchResponse response = item.getResponse();
+    nbHits += response.getHits().getTotalHits();
+}
+--------------------------------------------------
+
+
+[[java-search-aggs]]
+=== 使用聚合
+
+下面的代码展示了如何在你的搜索中添加两个聚合操作:
+
+[source,java]
+--------------------------------------------------
+SearchResponse sr = client.prepareSearch()
+    .setQuery(QueryBuilders.matchAllQuery())
+    .addAggregation(
+            AggregationBuilders.terms("agg1").field("field")
+    )
+    .addAggregation(
+            AggregationBuilders.dateHistogram("agg2")
+                    .field("birth")
+                    .dateHistogramInterval(DateHistogramInterval.YEAR)
+    )
+    .get();
+
+// Get your facet results
+Terms agg1 = sr.getAggregations().get("agg1");
+DateHistogram agg2 = sr.getAggregations().get("agg2");
+--------------------------------------------------
+
+详情参见 <<java-aggs,Java聚合API>> 文档.
+
+
+[[java-search-terminate-after]]
+=== 之后终止
+
+当到达每个分片要收集文档的最大数量时, 查询执行操作将提前终止。如果设置了这个数量, 你可以在 `SearchResponse` 对象上调用 `isTerminatedEarly()` 方法来检查操作是否提前终止:
+
+[source,java]
+--------------------------------------------------
+SearchResponse sr = client.prepareSearch(INDEX)
+    .setTerminateAfter(1000)    <1>
+    .get();
+
+if (sr.isTerminatedEarly()) {
+    // We finished early
+}
+--------------------------------------------------
+<1> 到达1000个文档后结束
+
+[[java-search-template]]
+=== 搜索模板
+
+参见 {ref}/search-template.html[搜索模板] 文档
+
+将你的模板参数定义成一个 `Map<String,Object>`:
+
+[source,java]
+--------------------------------------------------
+Map<String, Object> template_params = new HashMap<>();
+template_params.put("param_gender", "male");
+--------------------------------------------------
+
+你可以使用存储在 `config/scripts` 中的搜索模板.例如, 如果你有一个名为 `config/scripts/template_gender.mustache` 的文件, 内容如下:
+
+[source,js]
+--------------------------------------------------
+{
+    "template" : {
+        "query" : {
+            "match" : {
+                "gender" : "{{param_gender}}"
+            }
+        }
+    }
+}
+--------------------------------------------------
+// NOTCONSOLE
+
+创建你的搜索模板请求:
+
+[source,java]
+--------------------------------------------------
+SearchResponse sr = new SearchTemplateRequestBuilder(client)
+    .setScript("template_gender")                 <1>
+    .setScriptType(ScriptService.ScriptType.FILE) <2>
+    .setScriptParams(template_params)             <3>
+    .setRequest(new SearchRequest())              <4>
+    .get()                                        <5>
+    .getResponse();                               <6>
+--------------------------------------------------
+<1> 模板名称
+<2> 存储于磁盘上 `gender_template.mustache` 文件中的模板
+<3> 参数
+<4> 设置执行上下文(即在这里定义索引名称)
+<5> 执行并获取模板响应
+<6> 从模板响应中获取搜索本身的响应
+
+你还可以将模板存储在集群状态中:
+
+[source,java]
+--------------------------------------------------
+client.admin().cluster().preparePutStoredScript()
+    .setScriptLang("mustache")
+    .setId("template_gender")
+    .setSource(new BytesArray(
+        "{\n" +
+        "    \"template\" : {\n" +
+        "        \"query\" : {\n" +
+        "            \"match\" : {\n" +
+        "                \"gender\" : \"{{param_gender}}\"\n" +
+        "            }\n" +
+        "        }\n" +
+        "    }\n" +
+        "}")).get();
+--------------------------------------------------
+
+要执行一个已存储的模板, 可以使用 `ScriptService.ScriptType.STORED`:
+
+[source,java]
+--------------------------------------------------
+SearchResponse sr = new SearchTemplateRequestBuilder(client)
+        .setScript("template_gender")                       <1>
+        .setScriptType(ScriptType.STORED)     <2>
+        .setScriptParams(template_params)                   <3>
+        .setRequest(new SearchRequest())                    <4>
+        .get()                                              <5>
+        .getResponse();                                     <6>
+--------------------------------------------------
+<1> 模板名称
+<2> 存储在集群状态中的模板
+<3> 参数
+<4> 设置执行上下文(即在这里定义索引名称)
+<5> 执行并获取模板响应
+<6> 从模板响应中获取搜索本身的响应
+
+你还可以执行内联模板:
+
+[source,java]
+--------------------------------------------------
+sr = new SearchTemplateRequestBuilder(client)
+        .setScript("{\n" +                                  <1>
+                "        \"query\" : {\n" +
+                "            \"match\" : {\n" +
+                "                \"gender\" : \"{{param_gender}}\"\n" +
+                "            }\n" +
+                "        }\n" +
+                "}")
+        .setScriptType(ScriptType.INLINE)    <2>
+        .setScriptParams(template_params)                  <3>
+        .setRequest(new SearchRequest())                   <4>
+        .get()                                             <5>
+        .getResponse();                                    <6>
+--------------------------------------------------
+<1> 模板名称
+<2> 内联传递的模板
+<3> 参数
+<4> 设置执行上下文(即在这里定义索引名称)
+<5> 执行并获取模板响应
+<6> 从模板响应中获取搜索本身的响应

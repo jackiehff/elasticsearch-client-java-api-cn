@@ -1,0 +1,26 @@
+[[java-docs-get]]
+=== 获取API
+
+获取API允许用户根据文档ID获取索引中一个类型化的JSON文档. 下面的例子从twitter索引中获取一个JSON文档, 文档对应的类型是 tweet, 文档ID值为 1:
+
+[source,java]
+--------------------------------------------------
+GetResponse response = client.prepareGet("twitter", "tweet", "1").get();
+--------------------------------------------------
+
+想了解更多有关 get 操作的信息, 请查看 REST {ref}/docs-get.html[get] 文档.
+
+
+[[java-docs-get-thread]]
+==== 操作线程
+
+当在相同节点上执行实际的API操作时, 获取API允许用户设置将要执行操作的线程模型(API在同一台服务器上分配的分片上执行).
+
+可用的选项是在不同的线程上执行操作, 或者在调用线程上执行它(请注意, API仍然是异步的). `operationThreaded` 的默认值为 `true`, 意味着操作是在不同的线程上执行. 下面的示例将其设置为 `false`:
+
+[source,java]
+--------------------------------------------------
+GetResponse response = client.prepareGet("twitter", "tweet", "1")
+        .setOperationThreaded(false)
+        .get();
+--------------------------------------------------

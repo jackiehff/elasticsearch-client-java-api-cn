@@ -1,0 +1,28 @@
+[[java-docs-multi-get]]
+=== Multi Get API
+
+multi get API 允许根据文档的 `index`, `type` 以及 `id` 来获取文档列表:
+
+[source,java]
+--------------------------------------------------
+MultiGetResponse multiGetItemResponses = client.prepareMultiGet()
+    .add("twitter", "tweet", "1")           <1>
+    .add("twitter", "tweet", "2", "3", "4") <2>
+    .add("another", "type", "foo")          <3>
+    .get();
+
+for (MultiGetItemResponse itemResponse : multiGetItemResponses) { <4>
+    GetResponse response = itemResponse.getResponse();
+    if (response.isExists()) {                      <5>
+        String json = response.getSourceAsString(); <6>
+    }
+}
+--------------------------------------------------
+<1> 根据单个文档ID进行查询
+<2> 或者针对同样的索引/类型根据文档ID列表进行查询
+<3> 还可以从另一个索引上查询
+<4> 在结果集上进行迭代
+<5> 可以检查文档是否存在
+<6> 访问 `_source` 字段
+
+想了解更多有关 multi get 操作的信息, 请查看 REST {ref}/docs-multi-get.html[multi get] 文档.

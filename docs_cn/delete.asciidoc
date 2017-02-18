@@ -1,0 +1,69 @@
+[[java-docs-delete]]
+=== 删除 API
+
+删除API允许用户根据文档ID删除特定索引中的一个类型化的JSON文档. 下面的示例从名为 twitter 的索引中删除一个类型名称是 tweet、文档ID值为1的 JSON 文档:
+
+[source,java]
+--------------------------------------------------
+DeleteResponse response = client.prepareDelete("twitter", "tweet", "1").get();
+--------------------------------------------------
+
+想了解更多关于删除操作的信息请查看{ref}/docs-delete.html[删除API] 文档.
+
+
+[[java-docs-delete-thread]]
+==== 操作线程
+
+当在相同节点上执行实际的API操作时, 删除API允许用户设置将要执行操作的线程模型(API在同一台服务器上分配的分片上执行).
+
+可用的选项是在不同的线程上执行操作, 或者在调用线程上执行它(请注意, API仍然是异步的). `operationThreaded` 的默认值为 `true`, 意味着操作是在不同的线程上执行. 下面的示例将其设置为 `false`:
+
+[source,java]
+--------------------------------------------------
+DeleteResponse response = client.prepareDelete("twitter", "tweet", "1")
+        .setOperationThreaded(false)
+        .get();
+--------------------------------------------------
+
+[[java-docs-delete-by-query]]
+=== 按查询删除API
+
+按查询删除API允许用户删除一个基于查询结果得到文档集合:
+
+[source,java]
+--------------------------------------------------
+BulkIndexByScrollResponse response =
+    DeleteByQueryAction.INSTANCE.newRequestBuilder(client)
+        .filter(QueryBuilders.matchQuery("gender", "male")) <1>
+        .source("persons")                                  <2>
+        .get();                                             <3>
+
+long deleted = response.getDeleted();                       <4>
+--------------------------------------------------
+<1> 查询
+<2> 索引
+<3> 执行操作
+<4> 删除的文档数量
+
+因为它是一个耗时比较长的操作, 所以如果你想要异步执行, 你可以调用 `execute` 方法来替代 `get` 方法并提供一个像下面这样的监听器:
+
+[source,java]
+--------------------------------------------------
+DeleteByQueryAction.INSTANCE.newRequestBuilder(client)
+    .filter(QueryBuilders.matchQuery("gender", "male"))                  <1>
+    .source("persons")                                                   <2>
+    .execute(new ActionListener<BulkIndexByScrollResponse>() {           <3>
+        @Override
+        public void onResponse(BulkIndexByScrollResponse response) {
+            long deleted = response.getDeleted();                        <4>
+        }
+        @Override
+        public void onFailure(Exception e) {
+            // Handle the exception
+        }
+    });
+--------------------------------------------------
+<1> 查询
+<2> 索引
+<3> 监听器
+<4> 删除的文档数量

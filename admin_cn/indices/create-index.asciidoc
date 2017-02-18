@@ -1,0 +1,27 @@
+[[java-admin-indices-create-index]]
+==== 创建索引
+
+使用 <<java-admin-indices,`IndicesAdminClient`>> 对象, 你可以创建一个使用所有默认设置并且没有映射的索引:
+
+[source,java]
+--------------------------------------------------
+client.admin().indices().prepareCreate("twitter").get();
+--------------------------------------------------
+
+[float]
+[[java-admin-indices-create-index-settings]]
+===== 索引设置
+
+创建的每个索引都可以有与其相关的特定设置.
+
+[source,java]
+--------------------------------------------------
+client.admin().indices().prepareCreate("twitter")
+        .setSettings(Settings.builder()             <1>
+                .put("index.number_of_shards", 3)
+                .put("index.number_of_replicas", 2)
+        )
+        .get();                                     <2>
+--------------------------------------------------
+<1> 该索引的设置
+<2> 执行操作并等待响应结果

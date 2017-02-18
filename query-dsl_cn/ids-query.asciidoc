@@ -1,0 +1,15 @@
+[[java-query-dsl-ids-query]]
+==== 文档Id查询
+
+
+参见 {ref}/query-dsl-ids-query.html[文档Id查询]
+
+[source,java]
+--------------------------------------------------
+QueryBuilder qb = idsQuery("my_type", "type2")
+    .addIds("1", "4", "100");
+
+QueryBuilder qb = idsQuery() <1>
+    .addIds("1", "4", "100");
+--------------------------------------------------
+<1> 类型是可选的

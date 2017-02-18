@@ -1,0 +1,18 @@
+[[java-query-dsl-nested-query]]
+==== 嵌套查询
+
+参见 {ref}/query-dsl-nested-query.html[嵌套查询]
+
+[source,java]
+--------------------------------------------------
+QueryBuilder qb = nestedQuery(
+        "obj1",                       <1>
+        boolQuery()                   <2>
+                .must(matchQuery("obj1.name", "blue"))
+                .must(rangeQuery("obj1.count").gt(5)),
+        ScoreMode.Avg                 <3>
+    );
+--------------------------------------------------
+<1> 嵌套文档路径
+<2> 你的查询. 查询中引用的任何字段都必须使用完整的路径(全限定的).
+<3> 评分模式可以是 `ScoreMode.Max`, `ScoreMode.Min`, `ScoreMode.Total`, `ScoreMode.Avg` 或 `ScoreMode.None`

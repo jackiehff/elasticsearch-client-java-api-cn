@@ -1,0 +1,52 @@
+[[java-aggs-metrics-percentile-rank]]
+==== 百分比范围聚合
+
+下面展示了如何使用 Java API 进行{ref}/search-aggregations-metrics-percentile-rank-aggregation.html[百分比范围聚合].
+
+
+===== 创建聚合请求
+
+下面是一个创建聚合请求的代码示例:
+
+[source,java]
+--------------------------------------------------
+PercentileRanksAggregationBuilder aggregation =
+        AggregationBuilders
+                .percentileRanks("agg")
+                .field("height")
+                .values(1.24, 1.91, 2.22);
+--------------------------------------------------
+
+
+===== 使用聚合响应
+
+引入聚合定义类:
+
+[source,java]
+--------------------------------------------------
+import org.elasticsearch.search.aggregations.metrics.percentiles.Percentile;
+import org.elasticsearch.search.aggregations.metrics.percentiles.PercentileRanks;
+--------------------------------------------------
+
+[source,java]
+--------------------------------------------------
+// sr is here your SearchResponse object
+PercentileRanks agg = sr.getAggregations().get("agg");
+// For each entry
+for (Percentile entry : agg) {
+    double percent = entry.getPercent();    // Percent
+    double value = entry.getValue();        // Value
+
+    logger.info("percent [{}], value [{}]", percent, value);
+}
+--------------------------------------------------
+
+
+该示例会产生以下基本输出:
+
+[source,text]
+--------------------------------------------------
+percent [29.664353095090945], value [1.24]
+percent [73.9335313461868], value [1.91]
+percent [94.40095147327283], value [2.22]
+--------------------------------------------------

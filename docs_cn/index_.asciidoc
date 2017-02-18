@@ -1,0 +1,155 @@
+[[java-docs-index]]
+=== 索引 API
+
+索引 API 允许用户将一个类型化的JSON文档索引到一个特定的索引中并使它可以被搜索到.
+
+
+[[java-docs-index-generate]]
+==== 生成 JSON 文档
+
+生成一个 JSON 文档有以下几种不同的方式:
+
+* 手动(即自己动手)使用本地的 `byte[]` 或者作为一个 `String`
+
+* 使用一个 `Map`, 它将会自动地转换成等价的JSON
+
+* 使用像 http://wiki.fasterxml.com/JacksonHome[Jackson]这样的第三方类库来序列化你的JavaBeans
+
+* 使用内置的帮助类 XContentFactory.jsonBuilder()
+
+每种类型在内部会被转化成一个 `byte[]` (因此字符串将会转化成一个 `byte[]`). 因此, 如果对象已经是这种形式, 那么可以直接使用它. `jsonBuilder` 是经过高度优化的 JSON 生成器, 它可以直接构造一个 `byte[]`.
+
+
+[[java-docs-index-generate-diy]]
+===== 自己动手
+
+这里其实没有真正很难的地方, 但是需要注意的是, 你需要依据 {ref}/mapping-date-format.html[日期格式] 中的描述来编码日期.
+
+[source,java]
+--------------------------------------------------
+String json = "{" +
+        "\"user\":\"kimchy\"," +
+        "\"postDate\":\"2013-01-30\"," +
+        "\"message\":\"trying out Elasticsearch\"" +
+    "}";
+--------------------------------------------------
+
+
+[[java-docs-index-generate-using-map]]
+===== 使用 Map
+
+Map是一个键值对集合. 它表示一个 JSON 结构:
+
+[source,java]
+--------------------------------------------------
+Map<String, Object> json = new HashMap<String, Object>();
+json.put("user","kimchy");
+json.put("postDate",new Date());
+json.put("message","trying out Elasticsearch");
+--------------------------------------------------
+
+
+[[java-docs-index-generate-beans]]
+===== 序列化你的Bean
+
+你可以使用 http://wiki.fasterxml.com/JacksonHome[Jackson] 将你的Java Beans序列化成 JSON. 请在你的项目中添加 http://search.maven.org/#search%7Cga%7C1%7Cjackson-databind[Jackson Databind], 接着你就可以使用 `ObjectMapper` 来序列化你的Java Beans:
+
+[source,java]
+--------------------------------------------------
+import com.fasterxml.jackson.databind.*;
+
+// instance a json mapper
+ObjectMapper mapper = new ObjectMapper(); // create once, reuse
+
+// generate json
+byte[] json = mapper.writeValueAsBytes(yourbeaninstance);
+--------------------------------------------------
+
+
+[[java-docs-index-generate-helpers]]
+===== 使用 Elasticsearch 帮助类
+
+Elasticsearch 提供了内置的帮助类来生成 JSON 内容.
+
+[source,java]
+--------------------------------------------------
+import static org.elasticsearch.common.xcontent.XContentFactory.*;
+
+XContentBuilder builder = jsonBuilder()
+    .startObject()
+        .field("user", "kimchy")
+        .field("postDate", new Date())
+        .field("message", "trying out Elasticsearch")
+    .endObject()
+--------------------------------------------------
+
+请注意, 你还可以使用 `startArray(String)` 和 `endArray()` 方法来添加数组. 顺便说一下, `field` 方法可以接受许多对象类型. 你可以直接传递数字, 日期, 甚至是其它 XContentBuilder 对象.
+
+如果你需要查看生成的 JSON 内容, 你可以使用 `string()` 方法.
+
+[source,java]
+--------------------------------------------------
+String json = builder.string();
+--------------------------------------------------
+
+
+[[java-docs-index-doc]]
+==== 索引文档
+
+下面的例子将一个JSON文档索引到类型为tweet, 文档ID值为1的twitter索引中:
+
+[source,java]
+--------------------------------------------------
+import static org.elasticsearch.common.xcontent.XContentFactory.*;
+
+IndexResponse response = client.prepareIndex("twitter", "tweet", "1")
+        .setSource(jsonBuilder()
+                    .startObject()
+                        .field("user", "kimchy")
+                        .field("postDate", new Date())
+                        .field("message", "trying out Elasticsearch")
+                    .endObject()
+                  )
+        .get();
+--------------------------------------------------
+
+请注意, 你也可以将文档作为JSON字符串进行索引并且不需要指定文档ID:
+
+[source,java]
+--------------------------------------------------
+String json = "{" +
+        "\"user\":\"kimchy\"," +
+        "\"postDate\":\"2013-01-30\"," +
+        "\"message\":\"trying out Elasticsearch\"" +
+    "}";
+
+IndexResponse response = client.prepareIndex("twitter", "tweet")
+        .setSource(json)
+        .get();
+--------------------------------------------------
+
+`IndexResponse` 对象将会给你一个报告:
+
+[source,java]
+--------------------------------------------------
+// Index name
+String _index = response.getIndex();
+// Type name
+String _type = response.getType();
+// Document ID (generated or not)
+String _id = response.getId();
+// Version (if it's the first time you index this document, you will get: 1)
+long _version = response.getVersion();
+// status has stored current instance statement.
+RestStatus status = response.status();
+--------------------------------------------------
+
+想了解更多有关索引操作的信息请查看 REST {ref}/docs-index_.html[index] 文档.
+
+
+[[java-docs-index-thread]]
+==== 操作线程
+
+当在相同节点上执行实际的API操作时, 索引API允许用户设置将要执行操作的线程模型(API在同一台服务器上分配的分片上执行).
+
+可用的选项是在不同的线程上执行操作, 或者在调用线程上执行它(请注意, API仍然是异步的). `operationThreaded` 的默认值为 `true`, 意味着操作是在不同的线程上执行.

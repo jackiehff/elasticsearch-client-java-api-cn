@@ -1,0 +1,15 @@
+[[java-admin-indices-update-settings]]
+==== 更新索引设置
+
+通过调用以下代码你可以更改索引设置:
+
+[source,java]
+--------------------------------------------------
+client.admin().indices().prepareUpdateSettings("twitter")   <1>
+        .setSettings(Settings.builder()                     <2>
+                .put("index.number_of_replicas", 0)
+        )
+        .get();
+--------------------------------------------------
+<1> 待更新的索引
+<2> 设置

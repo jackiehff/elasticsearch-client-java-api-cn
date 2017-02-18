@@ -1,0 +1,14 @@
+[[java-query-dsl-term-query]]
+==== 词条查询
+
+参见 {ref}/query-dsl-term-query.html[词条查询]
+
+[source,java]
+--------------------------------------------------
+QueryBuilder qb = termQuery(
+    "name",    <1>
+    "kimchy"   <2>
+);
+--------------------------------------------------
+<1> 字段
+<2> 文本

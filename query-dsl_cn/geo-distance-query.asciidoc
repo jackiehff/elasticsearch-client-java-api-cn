@@ -1,0 +1,14 @@
+[[java-query-dsl-geo-distance-query]]
+==== 地理距离查询
+
+参见 {ref}/query-dsl-geo-distance-query.html[地理距离查询]
+
+[source,java]
+--------------------------------------------------
+QueryBuilder qb = geoDistanceQuery("pin.location")  <1>
+    .point(40, -70)                                 <2>
+    .distance(200, DistanceUnit.KILOMETERS);        <3>
+--------------------------------------------------
+<1> 字段
+<2> 中心点
+<3> 到中心点的距离

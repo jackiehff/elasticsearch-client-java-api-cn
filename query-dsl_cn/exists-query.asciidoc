@@ -1,0 +1,10 @@
+[[java-query-dsl-exists-query]]
+==== 存在查询
+
+参见 {ref}/query-dsl-exists-query.html[存在查询].
+
+[source,java]
+--------------------------------------------------
+QueryBuilder qb = existsQuery("name");       <1>
+--------------------------------------------------
+<1> 字段

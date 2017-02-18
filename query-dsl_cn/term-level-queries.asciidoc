@@ -1,0 +1,82 @@
+[[java-term-level-queries]]
+=== 词条级别的查询
+
+While the <<java-full-text-queries,full text queries>> will analyze the query
+string before executing, the _term-level queries_ operate on the exact terms
+that are stored in the inverted index.
+
+这些查询通常用于数字、日期以及枚举之类的结构化的数据, 而不是全文本字段. Alternatively, they allow you to craft
+low-level queries, foregoing the analysis process.
+
+The queries in this group are:
+
+<<java-query-dsl-term-query,`term`查询>>::
+
+    Find documents which contain the exact term specified in the field
+    specified.
+
+<<java-query-dsl-terms-query,`terms`查询>>::
+
+    Find documents which contain any of the exact terms specified in the field
+    specified.
+
+<<java-query-dsl-range-query,`range`查询>>::
+
+    Find documents where the field specified contains values (dates, numbers,
+    or strings) in the range specified.
+
+<<java-query-dsl-exists-query,`exists`查询>>::
+
+    Find documents where the field specified contains any non-null value.
+
+<<java-query-dsl-prefix-query,`prefix`查询>>::
+
+    Find documents where the field specified contains terms which being with
+    the exact prefix specified.
+
+<<java-query-dsl-wildcard-query,`wildcard`查询>>::
+
+    Find documents where the field specified contains terms which match the
+    pattern specified, where the pattern supports single character wildcards
+    (`?`) and multi-character wildcards (`*`)
+
+<<java-query-dsl-regexp-query,`regexp`查询>>::
+
+    Find documents where the field specified contains terms which match the
+    regular expression specified.
+
+<<java-query-dsl-fuzzy-query,`fuzzy`查询>>::
+
+    Find documents where the field specified contains terms which are fuzzily
+    similar to the specified term.  Fuzziness is measured as a
+    http://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance[莱文斯坦编辑距离]
+    of 1 or 2.
+
+<<java-query-dsl-type-query,`type` query>>::
+
+    查询指定类型的文档.
+
+<<java-query-dsl-ids-query,`ids` query>>::
+
+    查询指定类型和文档ID列表的文档.
+
+
+include::term-query.asciidoc[]
+
+include::terms-query.asciidoc[]
+
+include::range-query.asciidoc[]
+
+include::exists-query.asciidoc[]
+
+include::prefix-query.asciidoc[]
+
+include::wildcard-query.asciidoc[]
+
+include::regexp-query.asciidoc[]
+
+include::fuzzy-query.asciidoc[]
+
+include::type-query.asciidoc[]
+
+include::ids-query.asciidoc[]

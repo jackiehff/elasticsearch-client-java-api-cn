@@ -1,0 +1,10 @@
+[[java-query-dsl-query-string-query]]
+==== 查询字符串查询
+
+参见 {ref}/query-dsl-query-string-query.html[查询字符串查询]
+
+[source,java]
+--------------------------------------------------
+QueryBuilder qb = queryStringQuery("+kimchy -elasticsearch");    <1>
+--------------------------------------------------
+<1> 文本

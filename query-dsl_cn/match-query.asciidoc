@@ -1,0 +1,14 @@
+[[java-query-dsl-match-query]]
+==== 匹配查询
+
+参见 {ref}/query-dsl-match-query.html[匹配查询]
+
+[source,java]
+--------------------------------------------------
+QueryBuilder qb = matchQuery(
+    "name",                  <1>
+    "kimchy elasticsearch"   <2>
+);
+--------------------------------------------------
+<1> 字段
+<2> 文本

@@ -1,0 +1,37 @@
+[[java-query-dsl-script-query]]
+==== 脚本查询
+
+参见 {ref}/query-dsl-script-query.html[脚本查询]
+
+[source,java]
+--------------------------------------------------
+QueryBuilder qb = scriptQuery(
+    new Script("doc['num1'].value > 1") <1>
+);
+--------------------------------------------------
+<1> 内联脚本
+
+
+If you have stored on each data node a script named `myscript.painless` with:
+
+[source,painless]
+--------------------------------------------------
+doc['num1'].value > params.param1
+--------------------------------------------------
+
+You can use it then with:
+
+[source,java]
+--------------------------------------------------
+QueryBuilder qb = scriptQuery(
+    new Script(
+        ScriptType.FILE,                       <1>
+        "painless",                            <2>
+        "myscript",                            <3>
+        Collections.singletonMap("param1", 5)) <4>
+);
+--------------------------------------------------
+<1> 脚本类型: `ScriptType.FILE`, `ScriptType.INLINE` 或 `ScriptType.INDEXED`
+<2> 脚本引擎
+<3> 脚本名称
+<4> Parameters as a `Map` of `<String, Object>`

@@ -1,0 +1,38 @@
+[[java-aggs-metrics-stats]]
+==== 统计聚合
+
+下面展示了如何使用 Java API 进行{ref}/search-aggregations-metrics-stats-aggregation.html[统计聚合].
+
+
+===== 创建聚合请求
+
+下面是一个创建聚合请求的代码示例:
+
+[source,java]
+--------------------------------------------------
+StatsAggregationBuilder aggregation =
+        AggregationBuilders
+                .stats("agg")
+                .field("height");
+--------------------------------------------------
+
+
+===== 使用聚合响应
+
+引入聚合定义类:
+
+[source,java]
+--------------------------------------------------
+import org.elasticsearch.search.aggregations.metrics.stats.Stats;
+--------------------------------------------------
+
+[source,java]
+--------------------------------------------------
+// sr is here your SearchResponse object
+Stats agg = sr.getAggregations().get("agg");
+double min = agg.getMin();
+double max = agg.getMax();
+double avg = agg.getAvg();
+double sum = agg.getSum();
+long count = agg.getCount();
+--------------------------------------------------

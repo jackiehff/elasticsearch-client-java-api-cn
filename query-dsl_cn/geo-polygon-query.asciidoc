@@ -1,0 +1,17 @@
+[[java-query-dsl-geo-polygon-query]]
+==== 地理多变形查询
+
+参见 {ref}/query-dsl-geo-polygon-query.html[地理多变形查询]
+
+[source,java]
+--------------------------------------------------
+List<GeoPoint> points = new ArrayList<>();             <1>
+points.add(new GeoPoint(40, -70));
+points.add(new GeoPoint(30, -80));
+points.add(new GeoPoint(20, -90));
+
+QueryBuilder qb =
+        geoPolygonQuery("pin.location", points);       <2>
+--------------------------------------------------
+<1> add your polygon of points a document should fall within
+<2> initialise the query with field and points

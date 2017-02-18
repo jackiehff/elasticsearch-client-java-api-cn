@@ -1,0 +1,32 @@
+[[indexed-scripts]]
+== 索引脚本 API
+
+索引脚本 API 允许用户和存储在 Elasticsearch 索引中的脚本和模板进行交互. 它可以用来创建, 更新, 查询以及删除索引脚本和模板.
+
+[source,java]
+--------------------------------------------------
+PutIndexedScriptResponse = client.preparePutIndexedScript()
+			 .setScriptLang("groovy")
+			 .setId("script1")
+			 .setSource("_score * doc['my_numeric_field'].value")
+			 .execute()
+			 .actionGet();
+
+GetIndexedScriptResponse = client.prepareGetIndexedScript()
+			    .setScriptLang("groovy")
+			    .setId("script1")
+			    .execute()
+			    .actionGet();
+
+DeleteIndexedScriptResponse = client.prepareDeleteIndexedScript()
+			    .setScriptLang("groovy")
+			    .setId("script1")
+			    .execute()
+			    .actionGet();
+--------------------------------------------------
+
+想要存储模板, 可以简单地在 scriptLang 上使用 "mustache".
+
+=== 脚本语言
+
+该 API 允许用户设置与之交互的索引脚本的语言. 如果没有设置则将使用默认的脚本语言.
