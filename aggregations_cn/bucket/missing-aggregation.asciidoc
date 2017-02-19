@@ -1,7 +1,7 @@
 [[java-aggs-bucket-missing]]
 ==== Missing Aggregation
 
-下面展示了如何使用 Java API 进行 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/search-aggregations-bucket-missing-aggregation.html[Missing Aggregation].
+下面展示了如何使用 Java API 进行 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/search-aggregations-bucket-missing-aggregation.html[Missing Aggregation]。
 
 
 ===== 创建聚合请求

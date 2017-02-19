@@ -1,12 +1,12 @@
 [[java-aggs-bucket-terms]]
 ==== 词条聚合
 
-下面展示了如何使用 Java API 进行 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/search-aggregations-bucket-terms-aggregation.html[词条聚合].
+下面展示了如何使用 Java API 进行 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/search-aggregations-bucket-terms-aggregation.html[词条聚合]。
 
 
 ===== 创建聚合请求
 
-H下面是一个创建聚合请求的代码示例:
+下面是一个创建聚合请求的代码示例:
 
 [source,java]
 --------------------------------------------------
