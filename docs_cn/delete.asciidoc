@@ -1,34 +1,19 @@
 [[java-docs-delete]]
 === 删除 API
 
-删除API允许用户根据文档ID删除特定索引中的一个类型化的JSON文档. 下面的示例从名为 twitter 的索引中删除一个类型名称是 tweet、文档ID值为1的 JSON 文档:
+删除 API 允许用户根据文档 ID 删除特定索引中一个类型化的 JSON 文档。下面的示例从索引 twitter 中删除类型 tweet、文档 ID 为 1 的 JSON 文档:
 
 [source,java]
 --------------------------------------------------
 DeleteResponse response = client.prepareDelete("twitter", "tweet", "1").get();
 --------------------------------------------------
 
-想了解更多关于删除操作的信息请查看 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/docs-delete.html[删除API] 文档.
-
-
-[[java-docs-delete-thread]]
-==== 操作线程
-
-当在相同节点上执行实际的API操作时, 删除API允许用户设置将要执行操作的线程模型(API在同一台服务器上分配的分片上执行).
-
-可用的选项是在不同的线程上执行操作, 或者在调用线程上执行它(请注意, API仍然是异步的). `operationThreaded` 的默认值为 `true`, 意味着操作是在不同的线程上执行. 下面的示例将其设置为 `false`:
-
-[source,java]
---------------------------------------------------
-DeleteResponse response = client.prepareDelete("twitter", "tweet", "1")
-        .setOperationThreaded(false)
-        .get();
---------------------------------------------------
+更多关于删除操作的信息, 请查看 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/docs-delete.html[删除 API] 文档。
 
 [[java-docs-delete-by-query]]
 === 根据查询删除 API
 
-按查询删除API允许用户删除一个基于查询结果得到文档集合:
+根据查询删除 API 允许用户删除根据查询结果得到文档集合:
 
 [source,java]
 --------------------------------------------------

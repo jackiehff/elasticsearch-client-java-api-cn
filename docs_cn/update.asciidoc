@@ -1,7 +1,6 @@
 [[java-docs-update]]
 === 更新 API
 
-
 你可以创建一个 `UpdateRequest` 对象并将其发送给客户端:
 
 [source,java]
@@ -40,7 +39,7 @@ client.prepareUpdate("ttl", "doc", "1")
 [[java-docs-update-api-script]]
 ==== 通过脚本更新
 
-更新 API 允许基于用户所提供的脚本来更新文档:
+更新 API 允许根据用户所提供的脚本来更新文档:
 
 [source,java]
 --------------------------------------------------
@@ -69,7 +68,7 @@ client.update(updateRequest).get();
 [[java-docs-update-api-upsert]]
 ==== Upsert
 
-还支持`upsert`. 如果文档不存在, `upsert` 元素的内容将会用于索引新的文档:
+还支持 `upsert`. 如果文档不存在, `upsert` 元素的内容将会用于索引新的文档:
 
 [source,java]
 --------------------------------------------------
