@@ -10,7 +10,7 @@
 注意: 所有的 API 都是通过 Java API 暴露的(Elasticsearch 内部实际上是使用 Java API 来执行操作的)。
 
 
-== Maven仓库
+== Maven 仓库
 
 Elasticsearch 托管在 http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elasticsearch%22[Maven
 中央仓库] 中。

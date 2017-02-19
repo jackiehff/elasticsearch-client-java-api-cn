@@ -26,7 +26,7 @@ DeleteResponse response = client.prepareDelete("twitter", "tweet", "1")
 --------------------------------------------------
 
 [[java-docs-delete-by-query]]
-=== 按查询删除API
+=== 根据查询删除 API
 
 按查询删除API允许用户删除一个基于查询结果得到文档集合:
 

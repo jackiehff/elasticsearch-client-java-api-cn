@@ -1,5 +1,5 @@
 [[java-docs]]
-== 文档API
+== 文档 API
 
 本节描述了以下 CRUD API:
 
@@ -14,7 +14,7 @@
 * <<java-docs-multi-get>>
 * <<java-docs-bulk>>
 
-NOTE: 所有的 CRUD API 都是单索引的 API. `index` 参数接受单个索引名称或者指向单个索引的 `alias`.
+NOTE: 所有 CRUD API 都是单索引 API。`index` 参数接受单个索引名称或者指向单个索引的一个别名 `alias`。
 
 include::docs_cn/index_.asciidoc[]
 

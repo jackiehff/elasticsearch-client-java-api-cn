@@ -1,5 +1,5 @@
 [[java-docs-update]]
-=== 更新API
+=== 更新 API
 
 
 你可以创建一个 `UpdateRequest` 对象并将其发送给客户端:
