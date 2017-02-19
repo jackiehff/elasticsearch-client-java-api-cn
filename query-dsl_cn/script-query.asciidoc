@@ -1,7 +1,7 @@
 [[java-query-dsl-script-query]]
 ==== 脚本查询
 
-参见 {ref}/query-dsl-script-query.html[脚本查询]
+参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-script-query.html[脚本查询]
 
 [source,java]
 --------------------------------------------------

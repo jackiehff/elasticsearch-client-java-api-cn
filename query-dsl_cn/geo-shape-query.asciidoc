@@ -1,7 +1,7 @@
 [[java-query-dsl-geo-shape-query]]
 ==== 地理形状查询
 
-参见 {ref}/query-dsl-geo-shape-query.html[地理形状查询]
+参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-geo-shape-query.html[地理形状查询]
 
 Note: the `geo_shape` type uses `Spatial4J` and `JTS`, both of which are
 optional dependencies. Consequently you must add `Spatial4J` and `JTS`

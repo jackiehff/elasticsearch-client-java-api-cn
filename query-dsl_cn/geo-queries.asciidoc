@@ -1,4 +1,4 @@
-[[java-geo-queries]]
+ [[java-geo-queries]]
 === Geo queries
 
 Elasticsearch supports two types of geo data:

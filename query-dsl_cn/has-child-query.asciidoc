@@ -1,7 +1,7 @@
 [[java-query-dsl-has-child-query]]
 ==== Has Child Query
 
-See {ref}/query-dsl-has-child-query.html[Has Child Query]
+See https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-has-child-query.html[Has Child Query]
 
 [source,java]
 --------------------------------------------------
@@ -14,4 +14,3 @@ QueryBuilder qb = hasChildQuery(
 <1> child type to query against
 <2> query
 <3> score mode can be `ScoreMode.Avg`, `ScoreMode.Max`, `ScoreMode.Min`, `ScoreMode.None` or `ScoreMode.Total`
-

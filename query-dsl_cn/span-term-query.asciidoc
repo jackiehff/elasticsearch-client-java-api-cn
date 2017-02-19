@@ -1,7 +1,7 @@
 [[java-query-dsl-span-term-query]]
 ==== Span Term Query
 
-See {ref}/query-dsl-span-term-query.html[Span Term Query]
+See https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-span-term-query.html[Span Term Query]
 
 [source,java]
 --------------------------------------------------
@@ -12,4 +12,3 @@ QueryBuilder qb = spanTermQuery(
 --------------------------------------------------
 <1> field
 <2> value
-

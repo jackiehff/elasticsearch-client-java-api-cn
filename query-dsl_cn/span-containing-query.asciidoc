@@ -1,7 +1,7 @@
 [[java-query-dsl-span-containing-query]]
 ==== Span Containing Query
 
-参见 {ref}/query-dsl-span-containing-query.html[Span Containing Query]
+参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-span-containing-query.html[Span Containing Query]
 
 [source,java]
 --------------------------------------------------

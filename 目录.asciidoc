@@ -1,8 +1,6 @@
 [[java-api]]
 = Java API
 
-include::../Versions.asciidoc[]
-
 [preface]
 == 前言
 本节描述了 Elasticsearch 提供的 Java API. 所有的 Elasticsearch 操作都是使用一个

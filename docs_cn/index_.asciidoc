@@ -23,7 +23,7 @@
 [[java-docs-index-generate-diy]]
 ===== 自己动手
 
-这里其实没有真正很难的地方, 但是需要注意的是, 你需要依据 {ref}/mapping-date-format.html[日期格式] 中的描述来编码日期.
+这里其实没有真正很难的地方, 但是需要注意的是, 你需要依据 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/mapping-date-format.html[日期格式] 中的描述来编码日期.
 
 [source,java]
 --------------------------------------------------
@@ -144,7 +144,7 @@ long _version = response.getVersion();
 RestStatus status = response.status();
 --------------------------------------------------
 
-想了解更多有关索引操作的信息请查看 REST {ref}/docs-index_.html[index] 文档.
+想了解更多有关索引操作的信息请查看 REST https://www.elastic.co/guide/en/elasticsearch/reference/5.2/docs-index_.html[index] 文档.
 
 
 [[java-docs-index-thread]]

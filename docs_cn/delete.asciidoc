@@ -8,7 +8,7 @@
 DeleteResponse response = client.prepareDelete("twitter", "tweet", "1").get();
 --------------------------------------------------
 
-想了解更多关于删除操作的信息请查看{ref}/docs-delete.html[删除API] 文档.
+想了解更多关于删除操作的信息请查看 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/docs-delete.html[删除API] 文档.
 
 
 [[java-docs-delete-thread]]

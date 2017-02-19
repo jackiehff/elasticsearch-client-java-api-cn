@@ -8,7 +8,7 @@
 GetResponse response = client.prepareGet("twitter", "tweet", "1").get();
 --------------------------------------------------
 
-想了解更多有关 get 操作的信息, 请查看 REST {ref}/docs-get.html[get] 文档.
+想了解更多有关 get 操作的信息, 请查看 REST https://www.elastic.co/guide/en/elasticsearch/reference/5.2/docs-get.html[get] 文档.
 
 
 [[java-docs-get-thread]]

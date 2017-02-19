@@ -2,7 +2,7 @@
 ==== Percolate Query
 
 参见:
- * {ref}/query-dsl-percolate-query.html[Percolate Query]
+ * https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-percolate-query.html[Percolate Query]
 
 
 [source,java]

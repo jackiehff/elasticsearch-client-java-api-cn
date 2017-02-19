@@ -1,7 +1,7 @@
 [[java-aggs-metrics-scripted-metric]]
 ==== 脚本度量聚合
 
-下面展示了如何使用 Java API 进行{ref}/search-aggregations-metrics-scripted-metric-aggregation.html[脚本度量聚合].
+下面展示了如何使用 Java API 进行 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/search-aggregations-metrics-scripted-metric-aggregation.html[脚本度量聚合].
 
 如果你想要在一个嵌入式的数据节点上运行 Groovy 脚本, 不要忘了将 Groovy 添加到你的类路径中(例如用于单元测试).
 例如, 你可以将下面的依赖添加到 Maven 的 `pom.xml` 文件中:

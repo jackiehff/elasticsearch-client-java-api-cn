@@ -2,7 +2,7 @@
 ==== 文档Id查询
 
 
-参见 {ref}/query-dsl-ids-query.html[文档Id查询]
+参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-ids-query.html[文档Id查询]
 
 [source,java]
 --------------------------------------------------

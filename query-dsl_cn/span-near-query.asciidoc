@@ -1,7 +1,7 @@
 [[java-query-dsl-span-near-query]]
 ==== Span Near Query
 
-See {ref}/query-dsl-span-near-query.html[Span Near Query]
+See https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-span-near-query.html[Span Near Query]
 
 [source,java]
 --------------------------------------------------
@@ -15,4 +15,3 @@ QueryBuilder qb = spanNearQuery(
 <1> span term queries
 <2> slop factor: the maximum number of intervening unmatched positions
 <3> whether matches are required to be in-order
-

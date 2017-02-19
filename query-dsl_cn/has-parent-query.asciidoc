@@ -1,7 +1,7 @@
 [[java-query-dsl-has-parent-query]]
 ==== Has Parent Query
 
-See {ref}/query-dsl-has-parent-query.html[Has Parent]
+See https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-has-parent-query.html[Has Parent]
 
 [source,java]
 --------------------------------------------------

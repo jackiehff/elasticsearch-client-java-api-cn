@@ -77,6 +77,6 @@ TransportClient client = new PreBuiltTransportClient(settings);
 [[client-connected-to-client-node]]
 === 连接客户端到协调节点
 
-你可以在本地启动一个 {ref}/modules-node.html#coordinating-only-node[协调节点], 然后在你的应用程序中简单地创建一个 <<transport-client,`TransportClient`>> 对象并连接到这个协调节点.
+你可以在本地启动一个 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/modules-node.html#coordinating-only-node[协调节点], 然后在你的应用程序中简单地创建一个 <<transport-client,`TransportClient`>> 对象并连接到这个协调节点.
 
 通过这种方式, 协调节点将能够加载任何你所需要地插件 (例如可以考虑发现插件).

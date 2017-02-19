@@ -1,7 +1,7 @@
 [[java-query-dsl-dis-max-query]]
 ==== Dis Max Query
 
-See {ref}/query-dsl-dis-max-query.html[Dis Max Query]
+See https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-dis-max-query.html[Dis Max Query]
 
 [source,java]
 --------------------------------------------------

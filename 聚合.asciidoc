@@ -1,7 +1,7 @@
 [[java-aggs]]
 == 聚合
 
-Elasticsearch 提供了一套完整的 Java API 来使用聚合. 参见 {ref}/search-aggregations.html[聚合指南].
+Elasticsearch 提供了一套完整的 Java API 来使用聚合. 参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/search-aggregations.html[聚合指南].
 
 使用聚合构造器工厂(`AggregationBuilders`) 并且将查询时你想计算的每个聚合操作都添加到你的搜索请求中:
 
@@ -13,7 +13,7 @@ SearchResponse sr = node.client().prepareSearch()
         .execute().actionGet();
 --------------------------------------------------
 
-请注意, 你可以添加多个聚合. 详情参见 {ref}/search-search.html[Java搜索API].
+请注意, 你可以添加多个聚合. 详情参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/search-search.html[Java搜索API].
 
 要构建一个聚合请求, 可以使用 `AggregationBuilders` 帮助类. 只需要在你的类中引入它:
 
@@ -24,7 +24,7 @@ import org.elasticsearch.search.aggregations.AggregationBuilders;
 
 === 结构化聚合
 
-正如{ref}/search-aggregations.html[聚合指南]中的解释, 你可以在聚合内部定义一个子聚合.
+正如 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/search-aggregations.html[聚合指南] 中的解释, 你可以在聚合内部定义一个子聚合.
 
 聚合可以是度量聚合或桶聚合.
 

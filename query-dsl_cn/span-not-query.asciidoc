@@ -1,7 +1,7 @@
 [[java-query-dsl-span-not-query]]
 ==== Span Not Query
 
-参见 {ref}/query-dsl-span-not-query.html[Span Not Query]
+参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-span-not-query.html[Span Not Query]
 
 [source,java]
 --------------------------------------------------

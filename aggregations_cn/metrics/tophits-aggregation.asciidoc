@@ -1,7 +1,7 @@
 [[java-aggs-metrics-tophits]]
 ==== Top Hits聚合
 
-下面展示了如何使用 Java API 进行{ref}/search-aggregations-metrics-top-hits-aggregation.html[Top Hits聚合].
+下面展示了如何使用 Java API 进行 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/search-aggregations-metrics-top-hits-aggregation.html[Top Hits聚合].
 
 
 ===== 创建聚合请求

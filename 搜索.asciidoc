@@ -39,7 +39,7 @@ NOTE:   尽管 Java API 定义了额外的搜索类型 QUERY_AND_FETCH 和
 [[java-search-scrolling]]
 === 在Java中使用滚动
 
-首先请阅读 {ref}/search-request-scroll.html[scroll 文档]!
+首先请阅读 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/search-request-scroll.html[scroll 文档]!
 
 [source,java]
 --------------------------------------------------
@@ -65,7 +65,7 @@ do {
 [[java-search-msearch]]
 === MultiSearch API
 
-参见 {ref}/search-multi-search.html[MultiSearch API 查询]文档
+参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/search-multi-search.html[MultiSearch API 查询]文档
 
 [source,java]
 --------------------------------------------------
@@ -135,7 +135,7 @@ if (sr.isTerminatedEarly()) {
 [[java-search-template]]
 === 搜索模板
 
-参见 {ref}/search-template.html[搜索模板] 文档
+参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/search-template.html[搜索模板] 文档
 
 将你的模板参数定义成一个 `Map<String,Object>`:
 

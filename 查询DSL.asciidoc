@@ -2,7 +2,7 @@
 == 查询 DSL
 
 Elasticsearch提供了一套完整的 Java查询 dsl  in a similar manner to the
-REST {ref}/query-dsl.html[Query DSL]. 查询构造器工厂是 `QueryBuilders`. 一旦查询准备好之后, 你可以使用<<java-search,搜索API>>.
+REST https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl.html[Query DSL]. 查询构造器工厂是 `QueryBuilders`. 一旦查询准备好之后, 你可以使用<<java-search,搜索API>>.
 
 要使用 `QueryBuilders`, 只需要在你的类中引入:
 

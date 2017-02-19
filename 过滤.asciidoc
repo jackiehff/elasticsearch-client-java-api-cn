@@ -5,7 +5,7 @@ The percolator allows one to register queries against an index, and then
 send `percolate` requests which include a doc, getting back the
 queries that match on that doc out of the set of registered queries.
 
-Read the main {ref}/search-percolate.html[percolate]
+Read the main https://www.elastic.co/guide/en/elasticsearch/reference/5.2/search-percolate.html[percolate]
 documentation before reading this guide.
 
 [source,java]

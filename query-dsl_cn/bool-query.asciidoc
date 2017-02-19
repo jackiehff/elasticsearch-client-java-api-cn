@@ -1,7 +1,7 @@
 [[java-query-dsl-bool-query]]
 ==== 布尔查询
 
-参见 {ref}/query-dsl-bool-query.html[布尔查询]
+参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-bool-query.html[布尔查询]
 
 [source,java]
 --------------------------------------------------

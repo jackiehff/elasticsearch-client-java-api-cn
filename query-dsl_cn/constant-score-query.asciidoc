@@ -1,7 +1,7 @@
 [[java-query-dsl-constant-score-query]]
 ==== Constant Score Query
 
-参见 {ref}/query-dsl-constant-score-query.html[Constant Score Query]
+参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-constant-score-query.html[Constant Score Query]
 
 [source,java]
 --------------------------------------------------
