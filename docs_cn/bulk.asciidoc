@@ -1,7 +1,7 @@
 [[java-docs-bulk]]
 === Bulk API
 
-bulk API 允许用户在单个请求中索引和删除多个文档. 下面是一个使用示例:
+Bulk API 允许用户在单个请求中索引和删除多个文档。下面是一个使用示例:
 
 [source,java]
 --------------------------------------------------
@@ -39,7 +39,7 @@ if (bulkResponse.hasFailures()) {
 [[java-docs-bulk-processor]]
 === 使用批处理器
 
-`BulkProcessor` 类提供了一个简单的接口, 它可以根据请求数量或在指定的时间段后自动地刷新批量操作.
+`BulkProcessor` 类提供了一个简单的接口, 它可以根据请求数量或在指定的时间段后自动地刷新批量操作。
 
 要使用它的话, 首先要创建一个 `BulkProcessor` 实例:
 
@@ -77,22 +77,22 @@ BulkProcessor bulkProcessor = BulkProcessor.builder(
         .build();
 --------------------------------------------------
 <1> 添加你的 Elasticsearch 客户端
-<2> 该方法在批量操作执行前调用. 例如, 你可以使用 `request.numberOfActions()` 方法查看 numberOfActions
-<3> 该方法在批量操作执行后调用. 例如, 你可以使用 `response.hasFailures()` 方法检查是否有失败的请求
+<2> 该方法在批量操作执行前调用。例如, 你可以使用 `request.numberOfActions()` 方法查看 numberOfActions
+<3> 该方法在批量操作执行后调用。例如, 你可以使用 `response.hasFailures()` 方法检查是否有失败的请求
 <4> 该方法在批量失败并抛出 `Throwable` 时调用
 <5> 我们想要每 10 000 个请求执行一次批量操作
 <6> 我们想要每 5mb 刷新一次批量操作
 <7> 不管请求数量多少, 我们想每 5s 刷新一次批量操作
-<8> 设置并发请求数量. 值为 0 的话意味着一次只允许执行一个请求. 值为1的话意味着在累积新的批量请求时值允许执行1个并发请求.
-<9> 设置自定义退避策略, 该策略最初将等待100毫秒, 按指数增加并且最多重试三次. 当一个或多个批量项目请求因为 `EsRejectedExecutionException` 异常而失败, 这通常意味着没有足够的计算资源来处理这个请求, 一般会尝试重试. 要禁用退避, 可以传递 `BackoffPolicy.noBackoff()`.
+<8> 设置并发请求数量。值为 0 的话意味着一次只允许执行一个请求。值为1的话意味着在累积新的批量请求时值允许执行1个并发请求。
+<9> 设置自定义退避策略, 该策略最初将等待100毫秒, 按指数增加并且最多重试三次。当一个或多个批量项目请求因为 `EsRejectedExecutionException` 异常而失败, 这通常意味着没有足够的计算资源来处理这个请求, 一般会尝试重试. 要禁用退避, 可以传递 `BackoffPolicy.noBackoff()`.
 
 默认情况下, `BulkProcessor` 会做以下事情:
 
 * 设置 bulkActions 值为 `1000`
 * 设置 bulkSize 值为 `5mb`
 * 不会设置 flushInterval
-* 设置 concurrentRequests 值为 1, 意味着异步执行刷新操作.
-* 将 backoffPolicy 的值设置为重试8次以及50ms的启动延迟的一个指数退避. 总的等待时间大概是 5.1s.
+* 设置 concurrentRequests 值为 1, 意味着异步执行刷新操作。
+* 将 backoffPolicy 的值设置为重试8次以及50ms的启动延迟的一个指数退避。总的等待时间大概是 5.1s。
 
 [[java-docs-bulk-processor-requests]]
 ==== 添加请求
@@ -122,7 +122,7 @@ bulkProcessor.awaitClose(10, TimeUnit.MINUTES);
 bulkProcessor.close();
 --------------------------------------------------
 
-如果他们是通过设置 `flushInterval` 预先安排的, 那么两种方法都会清除所有剩余的文档并禁用所有其它事先安排的刷新. 如果启用了并发请求, 那么 `awaitClose` 方法将在指定的超时时间内等待所有的批量请求执行完成后返回 `true`, 如果在指定的等待时间之后所有批量请求还未完成则返回 `false`. `close` 方法会立即退出而不会等待任何还未完成的批量请求.
+如果他们是通过设置 `flushInterval` 预先安排的, 那么两种方法都会清除所有剩余的文档并禁用所有其它事先安排的刷新。如果启用了并发请求, 那么 `awaitClose` 方法将在指定的超时时间内等待所有的批量请求执行完成后返回 `true`, 如果在指定的等待时间之后所有批量请求还未完成则返回 `false`. `close` 方法会立即退出而不会等待任何还未完成的批量请求.
 
 [[java-docs-bulk-processor-tests]]
 ==== 在测试中使用批处理器

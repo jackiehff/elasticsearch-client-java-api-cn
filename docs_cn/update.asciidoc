@@ -21,7 +21,7 @@ client.update(updateRequest).get();
 [source,java]
 --------------------------------------------------
 client.prepareUpdate("ttl", "doc", "1")
-        .setScript(new Script("ctx._source.gender = \"male\"" <1> , ScriptService.ScriptType.INLINE, null, null))
+        .setScript(new Script("ctx._source.gender = \"male\"" <1> , ScriptType.INLINE, null, null))
         .get();
 
 client.prepareUpdate("ttl", "doc", "1")
@@ -31,8 +31,8 @@ client.prepareUpdate("ttl", "doc", "1")
             .endObject())
         .get();
 --------------------------------------------------
-<1> 你的脚本. 它也可以是一个本地存储的脚本名称. 在这种情况下, 你需要使用 `ScriptService.ScriptType.FILE`.
-<2> 将要合并到现有文档的一个文档.
+<1> 你的脚本. 它也可以是一个本地存储的脚本名称。在这种情况下, 你需要使用 `ScriptType.FILE`。
+<2> 将要合并到现有文档的一个文档。
 
 请注意, 你不能同时提供 `script` 和 `doc`.
 
@@ -52,7 +52,7 @@ client.update(updateRequest).get();
 [[java-docs-update-api-merge-docs]]
 ==== 通过合并文档进行更新
 
-更新 API 还支持传递部分文档, 它将合并到现有的文档中(简单递归合并, 对象的内部合并, 替换核心的键值对和数组). 例如:
+更新 API 还支持传递部分文档, 它将合并到现有的文档中(简单递归合并, 对象的内部合并, 替换核心的键值对和数组)。例如:
 
 [source,java]
 --------------------------------------------------
@@ -66,9 +66,9 @@ client.update(updateRequest).get();
 
 
 [[java-docs-update-api-upsert]]
-==== Upsert
+==== 更新插入
 
-还支持 `upsert`. 如果文档不存在, `upsert` 元素的内容将会用于索引新的文档:
+Elasticsearch 还支持更新插入。如果文档不存在, `upsert` 元素将用于索引新鲜文档:
 
 [source,java]
 --------------------------------------------------
@@ -88,7 +88,7 @@ client.update(updateRequest).get();
 --------------------------------------------------
 <1> 如果文档不存在, `indexRequest` 中的文档将会被添加进来
 
-如果文档 `index/type/1` 已经存在, 那么在该操作之后我们将会有一个像下面这样的文档:
+如果文档 `index/type/1` 已经存在, 那么在该操作之后我们将会得到一个像下面这样的文档:
 
 [source,js]
 --------------------------------------------------
@@ -100,7 +100,7 @@ client.update(updateRequest).get();
 // NOTCONSOLE
 <1> 该字段由更新请求添加
 
-如果它不存在, 那么我们将会有一个新的文档:
+如果它不存在, 那么我们将会得到一个新的文档:
 
 [source,js]
 --------------------------------------------------
