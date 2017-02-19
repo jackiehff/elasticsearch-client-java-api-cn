@@ -10,5 +10,5 @@ QueryBuilder qb = constantScoreQuery(
     )
     .boost(2.0f);                       <2>
 --------------------------------------------------
-<1> your query
-<2> query score
+<1> 查询
+<2> 查询分数

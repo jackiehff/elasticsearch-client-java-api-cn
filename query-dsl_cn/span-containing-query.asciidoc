@@ -11,5 +11,5 @@ QueryBuilder qb = spanContainingQuery(
           .inOrder(true),
     spanTermQuery("field1","foo"));                 <2>
 --------------------------------------------------
-<1> `big` part
-<2> `little` part
+<1> `big` 部分
+<2> `little` 部分

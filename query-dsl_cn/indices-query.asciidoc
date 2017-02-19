@@ -27,4 +27,4 @@ QueryBuilder qb = indicesQuery(
 --------------------------------------------------
 <1> 在选择的索引上执行的查询
 <2> 选择的索引
-<3> `none` (to match no documents), and `all` (to match all documents). Defaults to `all`.
+<3> `none`(to match no documents), and `all` (匹配所有文档). 默认值是 `all`。

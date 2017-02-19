@@ -12,8 +12,7 @@ The queries in this group are:
 
 <<java-query-dsl-term-query,`term`查询>>::
 
-    Find documents which contain the exact term specified in the field
-    specified.
+    查询特定字段中准确包含特定词条的文档
 
 <<java-query-dsl-terms-query,`terms`查询>>::
 

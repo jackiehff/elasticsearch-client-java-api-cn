@@ -1,7 +1,7 @@
 [[java-query-dsl-dis-max-query]]
 ==== Dis Max Query
 
-See https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-dis-max-query.html[Dis Max Query]
+参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-dis-max-query.html[Dis Max Query]
 
 [source,java]
 --------------------------------------------------
@@ -11,7 +11,7 @@ QueryBuilder qb = disMaxQuery()
     .boost(1.2f)                             <3>
     .tieBreaker(0.7f);                       <4>
 --------------------------------------------------
-<1> add your queries
-<2> add your queries
+<1> 添加查询
+<2> 添加查询
 <3> boost factor
 <4> tie breaker

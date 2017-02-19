@@ -1,7 +1,7 @@
 [[java-query-dsl-span-multi-term-query]]
 ==== Span Multi Term Query
 
-See https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-span-multi-term-query.html[Span Multi Term Query]
+参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-span-multi-term-query.html[Span Multi Term Query]
 
 [source,java]
 --------------------------------------------------
@@ -9,5 +9,4 @@ QueryBuilder qb = spanMultiTermQueryBuilder(
     prefixQuery("user", "ki")                   <1>
 );
 --------------------------------------------------
-<1> Can be any builder extending the `MultiTermQueryBuilder` class. For example: `FuzzyQueryBuilder`,
-`PrefixQueryBuilder`, `RangeQueryBuilder`, `RegexpQueryBuilder` or `WildcardQueryBuilder`.
+<1> 可以是任何继承了 `MultiTermQueryBuilder` 类的生成器。例如: `FuzzyQueryBuilder`, `PrefixQueryBuilder`, `RangeQueryBuilder`, `RegexpQueryBuilder` 或者 `WildcardQueryBuilder`.

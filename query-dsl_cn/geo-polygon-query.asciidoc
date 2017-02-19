@@ -14,4 +14,4 @@ QueryBuilder qb =
         geoPolygonQuery("pin.location", points);       <2>
 --------------------------------------------------
 <1> add your polygon of points a document should fall within
-<2> initialise the query with field and points
+<2> 使用字段和点初始化查询

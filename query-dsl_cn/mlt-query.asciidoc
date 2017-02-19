@@ -16,5 +16,5 @@ QueryBuilder qb = moreLikeThisQuery(fields, texts, items)
 --------------------------------------------------
 <1> 字段
 <2> 文本
-<3> ignore threshold
-<4> max num of Terms in generated queries
+<3> 忽略阈值
+<4> 生成的查询中词条的最大数量

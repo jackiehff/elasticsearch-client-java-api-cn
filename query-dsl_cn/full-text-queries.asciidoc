@@ -6,22 +6,22 @@ queries on full text fields like the body of an email. They understand how the
 field being queried is analyzed and will apply each field's
 `analyzer` (or `search_analyzer`) to the query string before executing.
 
-The queries in this group are:
+该组中的查询有:
 
-<<java-query-dsl-match-query,`match` query>>::
+<<java-query-dsl-match-query,`match` 查询>>::
 
     The standard query for performing full text queries, including fuzzy matching
     and phrase or proximity queries.
 
-<<java-query-dsl-multi-match-query,`multi_match` query>>::
+<<java-query-dsl-multi-match-query,`multi_match` 查询>>::
 
     The multi-field version of the `match` query.
 
-<<java-query-dsl-common-terms-query,`common_terms` query>>::
+<<java-query-dsl-common-terms-query,`common_terms` 查询>>::
 
     A more specialized query which gives more preference to uncommon words.
 
-<<java-query-dsl-query-string-query,`query_string` query>>::
+<<java-query-dsl-query-string-query,`query_string` 查询>>::
 
     Supports the compact Lucene query string syntax,
     allowing you to specify AND|OR|NOT conditions and multi-field search
@@ -41,4 +41,3 @@ include::common-terms-query.asciidoc[]
 include::query-string-query.asciidoc[]
 
 include::simple-query-string-query.asciidoc[]
-

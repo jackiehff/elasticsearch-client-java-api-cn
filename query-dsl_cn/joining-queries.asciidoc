@@ -5,19 +5,13 @@ Performing full SQL-style joins in a distributed system like Elasticsearch is
 prohibitively expensive.  Instead, Elasticsearch offers two forms of join
 which are designed to scale horizontally.
 
-<<java-query-dsl-nested-query,`nested` 查询>>::
+<<java-query-dsl-nested-query,嵌套查询>>::
 
-Documents may contains fields of type `nested`. These
-fields are used to index arrays of objects, where each object can be queried
-(with the `nested` query) as an independent document.
+文档可能包含 `nested` 类型的字段。这些字段用于索引对象数组, 其中每个对象可以作为一个独立的文本进行查询(使用嵌套查询)。
 
 <<java-query-dsl-has-child-query,`has_child`>> 和 <<java-query-dsl-has-parent-query,`has_parent`>> 查询::
 
-A parent-child relationship can exist between two
-document types within a single index. The `has_child` query returns parent
-documents whose child documents match the specified query, while the
-`has_parent` query returns child documents whose parent document matches the
-specified query.
+单个索引中的两种类型的文档之间可以存在父子关系。因为子文档匹配特定的查询, `has_child` 查询会返回父文档, 而因为父文档匹配特定的查询, `has_parent` 查询会返回子文档。
 
 include::nested-query.asciidoc[]
 

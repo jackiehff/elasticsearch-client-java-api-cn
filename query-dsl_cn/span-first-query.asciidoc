@@ -11,4 +11,4 @@ QueryBuilder qb = spanFirstQuery(
 );
 --------------------------------------------------
 <1> 查询
-<2> max end position
+<2> 最大结束位置

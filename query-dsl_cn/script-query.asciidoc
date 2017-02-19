@@ -12,14 +12,14 @@ QueryBuilder qb = scriptQuery(
 <1> 内联脚本
 
 
-If you have stored on each data node a script named `myscript.painless` with:
+如果你在每个数据节点上都存储了一个名为 `myscript.painless` 的脚本, 脚本内容如下:
 
 [source,painless]
 --------------------------------------------------
 doc['num1'].value > params.param1
 --------------------------------------------------
 
-You can use it then with:
+那么你可以像下面这样使用它:
 
 [source,java]
 --------------------------------------------------
@@ -34,4 +34,4 @@ QueryBuilder qb = scriptQuery(
 <1> 脚本类型: `ScriptType.FILE`, `ScriptType.INLINE` 或 `ScriptType.INDEXED`
 <2> 脚本引擎
 <3> 脚本名称
-<4> Parameters as a `Map` of `<String, Object>`
+<4> 参数是 `<String, Object>` 类型的 `Map`

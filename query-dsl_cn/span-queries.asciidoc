@@ -7,42 +7,42 @@ to implement very specific queries on legal documents or patents.
 
 Span queries cannot be mixed with non-span queries (with the exception of the `span_multi` query).
 
-The queries in this group are:
+该组中的查询有:
 
-<<java-query-dsl-span-term-query,`span_term` query>>::
+<<java-query-dsl-span-term-query,`span_term` 查询>>::
 
 The equivalent of the <<java-query-dsl-term-query,`term` query>> but for use with
 other span queries.
 
-<<java-query-dsl-span-multi-term-query,`span_multi` query>>::
+<<java-query-dsl-span-multi-term-query,`span_multi` 查询>>::
 
 Wraps a <<java-query-dsl-term-query,`term`>>, <<java-query-dsl-range-query,`range`>>,
 <<java-query-dsl-prefix-query,`prefix`>>, <<java-query-dsl-wildcard-query,`wildcard`>>,
 <<java-query-dsl-regexp-query,`regexp`>>, or <<java-query-dsl-fuzzy-query,`fuzzy`>> query.
 
-<<java-query-dsl-span-first-query,`span_first` query>>::
+<<java-query-dsl-span-first-query,`span_first` 查询>>::
 
 Accepts another span query whose matches must appear within the first N
 positions of the field.
 
-<<java-query-dsl-span-near-query,`span_near` query>>::
+<<java-query-dsl-span-near-query,`span_near` 查询>>::
 
 Accepts multiple span queries whose matches must be within the specified distance of each other, and possibly in the same order.
 
-<<java-query-dsl-span-or-query,`span_or` query>>::
+<<java-query-dsl-span-or-query,`span_or` 查询>>::
 
 Combines multiple span queries -- returns documents which match any of the
 specified queries.
 
-<<java-query-dsl-span-not-query,`span_not` query>>::
+<<java-query-dsl-span-not-query,`span_not` 查询>>::
 
 Wraps another span query, and excludes any documents which match that query.
 
-<<java-query-dsl-span-containing-query,`span_containing` query>>::
+<<java-query-dsl-span-containing-query,`span_containing` 查询>>::
 
 Accepts a list of span queries, but only returns those spans which also match a second span query.
 
-<<java-query-dsl-span-within-query,`span_within` query>>::
+<<java-query-dsl-span-within-query,`span_within` 查询>>::
 
 The result from a single span query is returned as long is its span falls
 within the spans returned by a list of other span queries.

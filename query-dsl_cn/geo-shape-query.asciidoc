@@ -3,9 +3,7 @@
 
 参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-geo-shape-query.html[地理形状查询]
 
-Note: the `geo_shape` type uses `Spatial4J` and `JTS`, both of which are
-optional dependencies. Consequently you must add `Spatial4J` and `JTS`
-to your classpath in order to use this type:
+Note: `geo_shape` 类型使用了 `Spatial4J` 和 `JTS`, 它们都是可选的依赖。因此为了使用这种类型, 你必须要将 `Spatial4J` 和 `JTS` 依赖添加到你的类路径中:
 
 [source,xml]
 -----------------------------------------------
@@ -27,8 +25,8 @@ to your classpath in order to use this type:
     </exclusions>
 </dependency>
 -----------------------------------------------
-<1> 在 http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.locationtech.spatial4j%22%20AND%20a%3A%22spatial4j%22[Maven中央仓库]中检查更新
-<2> 在 http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.vividsolutions%22%20AND%20a%3A%22jts%22[Maven中央仓库]中检查更新
+<1> 在 http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.locationtech.spatial4j%22%20AND%20a%3A%22spatial4j%22[Maven 中央仓库]中检查更新
+<2> 在 http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.vividsolutions%22%20AND%20a%3A%22jts%22[Maven 中央仓库]中检查更新
 
 [source,java]
 --------------------------------------------------
