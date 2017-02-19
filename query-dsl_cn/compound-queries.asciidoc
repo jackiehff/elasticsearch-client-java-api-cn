@@ -1,5 +1,5 @@
 [[java-compound-queries]]
-=== Compound queries
+=== 复合查询
 
 Compound queries wrap other compound or leaf queries, either to combine their
 results and scores, to change their behaviour, or to switch from query to
@@ -39,7 +39,7 @@ documents which also match a `negative` query.
 
 <<java-query-dsl-indices-query,`indices` 查询>>::
 
-Execute one query for the specified indices, and another for other indices.
+对指定的索引执行一个查询，为其他索引执行另一个查询。
 
 
 include::constant-score-query.asciidoc[]

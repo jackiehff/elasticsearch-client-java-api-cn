@@ -11,6 +11,6 @@ QueryBuilder qb = hasChildQuery(
     ScoreMode.Avg                   <3>
 );
 --------------------------------------------------
-<1> child type to query against
+<1> 要查询的子类型
 <2> 查询
 <3> 评分模式可以是 `ScoreMode.Avg`, `ScoreMode.Max`, `ScoreMode.Min`, `ScoreMode.None` 或 `ScoreMode.Total`

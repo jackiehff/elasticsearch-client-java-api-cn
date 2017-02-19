@@ -10,5 +10,5 @@ QueryBuilder qb = geoBoundingBoxQuery("pin.location") <1>
                 40.717, -73.99);                      <3>
 --------------------------------------------------
 <1> 字段
-<2> bounding box top left point
-<3> bounding box bottom right point
+<2> 边界框顶部左边点
+<3> 边界框底部右边点

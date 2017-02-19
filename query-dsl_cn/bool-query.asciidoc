@@ -12,7 +12,7 @@ QueryBuilder qb = boolQuery()
     .should(termQuery("content", "test3"))  <3>
     .filter(termQuery("content", "test5")); <4>
 --------------------------------------------------
-<1> must query
-<2> must not query
-<3> should query
-<4> a query that must appear in the matching documents but doesn't contribute to scoring.
+<1> must 查询
+<2> must not 查询
+<3> should 查询
+<4> 必须出现在匹配文档中但不对评分有贡献的查询。

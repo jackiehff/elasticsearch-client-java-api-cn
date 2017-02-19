@@ -1,7 +1,7 @@
 [[java-query-dsl-boosting-query]]
 ==== Boosting Query
 
-See https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-boosting-query.html[Boosting Query]
+参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-boosting-query.html[Boosting Query]
 
 [source,java]
 --------------------------------------------------
@@ -10,6 +10,6 @@ QueryBuilder qb = boostingQuery(
         termQuery("name","dadoonet"))  <2>
     .negativeBoost(0.2f);              <3>
 --------------------------------------------------
-<1> query that will promote documents
-<2> query that will demote documents
+<1> 提升文档的查询
+<2> 降级文档的查询
 <3> negative boost

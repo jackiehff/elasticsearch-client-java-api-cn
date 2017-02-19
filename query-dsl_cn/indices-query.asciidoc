@@ -1,7 +1,7 @@
 [[java-query-dsl-indices-query]]
 ==== 索引查询
 
-deprecated[5.0.0, Search on the '_index' field instead]
+过时[5.0.0, Search on the '_index' field instead]
 
 参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-indices-query.html[索引查询]
 
@@ -15,7 +15,7 @@ QueryBuilder qb = indicesQuery(
 --------------------------------------------------
 <1> 在选择的索引上执行的查询
 <2> 选择的索引
-<3> query to be executed on non matching indices
+<3> 非匹配索引上执行的查询
 
 [source,java]
 --------------------------------------------------

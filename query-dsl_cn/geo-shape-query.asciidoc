@@ -3,7 +3,7 @@
 
 参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-geo-shape-query.html[地理形状查询]
 
-Note: `geo_shape` 类型使用了 `Spatial4J` 和 `JTS`, 它们都是可选的依赖。因此为了使用这种类型, 你必须要将 `Spatial4J` 和 `JTS` 依赖添加到你的类路径中:
+注意: `geo_shape` 类型使用了 `Spatial4J` 和 `JTS`, 它们都是可选的依赖。因此为了使用这种类型, 你必须要将 `Spatial4J` 和 `JTS` 依赖添加到你的类路径中:
 
 [source,xml]
 -----------------------------------------------

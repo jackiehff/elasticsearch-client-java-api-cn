@@ -1,9 +1,7 @@
 [[java-joining-queries]]
-=== Joining queries
+=== 连接查询
 
-Performing full SQL-style joins in a distributed system like Elasticsearch is
-prohibitively expensive.  Instead, Elasticsearch offers two forms of join
-which are designed to scale horizontally.
+在像 Elasticsearch 这样的分布式系统中执行完全 SQL 风格的连接查询, 代价是非常昂贵的。相反, Elasticsearch 提供了两种形式的连接, 它们主要设计用于水平扩展。
 
 <<java-query-dsl-nested-query,嵌套查询>>::
 
