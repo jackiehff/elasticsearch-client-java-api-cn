@@ -3,19 +3,17 @@
 
 [preface]
 == 前言
-本节描述了 Elasticsearch 提供的 Java API. 所有的 Elasticsearch 操作都是使用一个
-<<client,Client>> 对象来执行的. 所有的操作本质上都是完全异步的 (要么接受一个监听器, 要么返回一个 future).
+本节描述了 Elasticsearch 提供的 Java API。Elasticsearch 的所有操作都是使用 <<client,Client>> 对象来执行的。所有操作本质上都是完全异步的 (要么接受一个监听器, 要么返回一个 Future 对象)。
 
-另外, 一个客户端上的操作可以累积起来以 <<java-docs-bulk,批量>> 的方式执行.
+另外, 客户端上的操作可以累积起来并以 <<java-docs-bulk,批量>> 的方式执行。
 
-注意: 所有的 API 都是通过 Java API 暴露的(实际上, Elasticsearch 内部使用 Java API 来执行操作).
+注意: 所有的 API 都是通过 Java API 暴露的(Elasticsearch 内部实际上是使用 Java API 来执行操作的)。
 
 
 == Maven仓库
 
-Elasticsearch 托管在
-http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elasticsearch%22[Maven
-中央仓库]中.
+Elasticsearch 托管在 http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elasticsearch%22[Maven
+中央仓库] 中。
 
 例如, 你可以在 `pom.xml` 文件中声明最新版本的依赖:
 
@@ -30,7 +28,7 @@ http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elasticsearch%22[Maven
 
 === Log4j 2 日志记录器
 
-你需要把 Log4j 2 依赖也包含进来:
+你还需要引入 Log4j 2 依赖:
 
 ["source","xml"]
 --------------------------------------------------
@@ -47,9 +45,7 @@ http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elasticsearch%22[Maven
 </dependency>
 --------------------------------------------------
 
-你还需要在你的类路径中提供一个 Log4j 2 配置文件.
-例如, 你可以在 `src/main/resources` 这个工程目录下添加一个 `log4j2.properties` 文件, 内容如下:
-
+并且还需要在类路径中提供一个 Log4j 2 配置文件。例如, 你可以在 `src/main/resources` 这个工程目录下添加一个 `log4j2.properties` 文件, 内容如下:
 
 ["source","properties"]
 --------------------------------------------------
@@ -63,7 +59,7 @@ rootLogger.appenderRef.console.ref = console
 
 === 使用其它日志记录器
 
-如果你想要使用其它的日志记录器, 可以使用 http://www.slf4j.org/[SLF4J] 桥接器来实现:
+如果你想要使用 Log4j 2 之外的其它日志记录器, 可以使用 http://www.slf4j.org/[SLF4J] 桥接器来实现:
 
 ["source","xml"]
 --------------------------------------------------
@@ -80,8 +76,8 @@ rootLogger.appenderRef.console.ref = console
 </dependency>
 --------------------------------------------------
 
-http://www.slf4j.org/manual.html[SLF4J用户手册] 这篇文章中列举出了你可以使用的所有日志实现. 选择你最喜欢的日志记录器并
-将其作为依赖添加进来. 举个例子, 我们将使用 `slf4j-simple` 这个日志记录器:
+http://www.slf4j.org/manual.html[SLF4J用户手册] 这篇文章中列举出了你可以使用的所有日志实现。你可以选择你最喜欢的日志记录器并
+将其作为 Maven 依赖添加进来。举个例子, 我们将使用 `slf4j-simple` 这个日志记录器:
 
 ["source","xml"]
 --------------------------------------------------
@@ -95,21 +91,20 @@ http://www.slf4j.org/manual.html[SLF4J用户手册] 这篇文章中列举出了�
 
 == 解决JAR包依赖冲突
 
-如果你想要在你的 Java 应用程序中使用 Elasticsearch, 你可能需要处理与 Guava 和 Joda 这样的第三方依赖之间的版本冲突. 例如 Elasticsearch 可能使用的是 Joda 2.8, 而你的代码中使用的是 Joda 2.1.
+如果你想要在 Java 应用程序中使用 Elasticsearch, 你可能需要处理和 Guava 以及 Joda 这样的第三方依赖之间的版本冲突。例如 Elasticsearch 可能使用的是 Joda 2.8, 而你的代码中使用的是 Joda 2.1。
 
-你有两个选择:
+你现在有两个选择:
 
-* 最简单的解决方案就是升级. 较新的模块版本通常会解决一些老版本的 bug. 如果你的版本落后的比较远, 那么以后升级就会更加困难. 当然, 有可能你使用了
-一个第三方依赖, 它反过来依赖于一个已过时版本的包, 这样也会阻止你的升级.
+* 最简单的解决方案就是升级。较新的模块版本通常会解决一些老版本的 bug, 如果你的版本落后的比较远, 那么以后升级就会更加困难。当然, 有可能你使用的一个第三方依赖, 它反过来依赖于一个已过时版本的包, 这样也会阻止你的升级.
 
-* 第二个选项是重新安置冲突的依赖, 并且使用自己的应用程序或者是 Elasticsearch 以及 Elasticsearch 客户端所依赖的任何插件来隐藏它们.
+* 第二个解决方案就是重新安置冲突的依赖, 并且使用自己的应用程序或者是 Elasticsearch 以及 Elasticsearch 客户端所依赖的任何插件来隐藏它们。
 
-https://www.elastic.co/blog/to-shade-or-not-to-shade["隐藏或不隐藏"这篇博客] 描述了这样做的所有步骤.
+https://www.elastic.co/blog/to-shade-or-not-to-shade["隐藏或不隐藏"这篇博客] 描述了这样做的所有步骤。
 
-== 将依赖嵌入jar包中
+== 将依赖嵌入jar包
 
 如果你想创建一个包含你应用程序代码和所有依赖的 jar 包, 请不要使用 `maven-assembly-plugin` 插件, 因为它无法处理 Lucene jar 包
-所要求的 `META-INF/services` 结构.
+所要求的 `META-INF/services` 结构。
 
 相反, 你可以使用 `maven-shade-plugin` 插件并使用如下配置:
 
@@ -143,9 +138,9 @@ https://www.elastic.co/blog/to-shade-or-not-to-shade["隐藏或不隐藏"这篇�
 --------------------------------------------------
 
 
-== 部署到 JBoss EAP6 模块中
+== 部署到JBoss EAP6模块
 
-Elasticsearch 和 Lucene 类必须要部署到同一个 JBoss 模块中.
+Elasticsearch 和 Lucene 类必须要部署到同一个 JBoss 模块中。
 
 你可以定义一个 `module.xml` 文件, 内容如下:
 
