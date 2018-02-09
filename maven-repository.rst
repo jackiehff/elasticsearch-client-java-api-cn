@@ -2,7 +2,7 @@
 Maven仓库
 ########################################
 
-Elasticsearch 托管在 ` Maven中央仓库 <http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elasticsearch%22>`_ 中。
+Elasticsearch 托管在 `Maven中央仓库 <http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elasticsearch%22>`_ 中。
 
 例如, 你可以在 `pom.xml` 文件中声明最新版本的依赖:
 
@@ -74,7 +74,7 @@ Log4j 2 日志记录器
 使用其它日志记录器
 ****************************************
 
-如果你想要使用 Log4j 2 之外的日志记录器, 可以使用 ` SLF4J <http://www.slf4j.org/>`_ 桥接器来实现:
+如果你想要使用 Log4j 2 之外的日志记录器, 可以使用 `SLF4J <http://www.slf4j.org/>`_ 桥接器来实现:
 
 .. code-block:: xml
 
@@ -90,7 +90,7 @@ Log4j 2 日志记录器
         <version>1.7.24</version>
     </dependency>
 
-` SLF4J用户手册 <http://www.slf4j.org/manual.html>`_ 这篇文章中列举了所有可使用的日志实现。选择你最喜欢的日志记录器并将其作为 Maven 依赖添加进来。举个例子, 我们将使用 `slf4j-simple` 这个日志记录器:
+`SLF4J用户手册 <http://www.slf4j.org/manual.html>`_ 这篇文章中列举了所有可使用的日志实现。选择你最喜欢的日志记录器并将其作为 Maven 依赖添加进来。举个例子, 我们将使用 `slf4j-simple` 这个日志记录器:
 
 .. code-block:: xml
 
