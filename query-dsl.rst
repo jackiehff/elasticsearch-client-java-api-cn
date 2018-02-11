@@ -2,8 +2,7 @@
 查询DSL
 ########################################
 
-Elasticsearch提供了一套完整的 Java查询 dsl  in a similar manner to the
-REST https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl.html[Query DSL]. 查询构造器工厂是 `QueryBuilders`. 一旦查询准备好之后, 你可以使用<<java-search,搜索API>>.
+Elasticsearch 以类似REST`查询DSL <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/query-dsl.html>`_ 的方式提供了一套完整的Java查询DSL。查询构造器工厂是 `QueryBuilders`。一旦查询准备好之后, 你可以使用 :ref:`search_api`。
 
 要使用 `QueryBuilders`, 只需要在你的类中引入:
 
@@ -11,9 +10,9 @@ REST https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl.html[
 
     import static org.elasticsearch.index.query.QueryBuilders.*;
 
-请注意, Note that you can easily print (aka debug) JSON generated queries using `toString()` method on `QueryBuilder` object.
+请注意,  you can easily print (aka debug) JSON generated queries using `toString()` method on `QueryBuilder` object.
 
-The `QueryBuilder` can then be used with any API that accepts a query, such as `count` and `search`.
+接着 `QueryBuilder` 就可以用于任何接受查询的API  can then be used with any API that accepts a query, such as `count` and `search`.
 
 
 ****************************************
@@ -56,7 +55,8 @@ Match All Query
     一个更加简单, 更加健壮版本的 `query_string` 语法, 适合直接暴露给用户。
 
 
-==== 匹配查询
+匹配查询
+========================================
 
 参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-match-query.html[匹配查询]
 
@@ -71,7 +71,8 @@ Match All Query
 <2> 文本
 
 
-==== Multi Match Query
+Multi Match Query
+========================================
 
 参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-multi-match-query.html[Multi Match Query]
 
@@ -86,7 +87,8 @@ Match All Query
 <2> 字段
 
 
-==== 通用词条查询
+通用词条查询
+========================================
 
 参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-common-terms-query.html[通用词条查询]
 
@@ -98,7 +100,8 @@ Match All Query
 <1> 字段
 <2> 值
 
-==== 查询字符串查询
+查询字符串查询
+========================================
 
 参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-query-string-query.html[查询字符串查询]
 
@@ -109,7 +112,8 @@ Match All Query
 <1> 文本
 
 
-==== 简单查询字符串查询
+简单查询字符串查询
+========================================
 
 参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-simple-query-string-query.html[简单查询字符串查询]
 
@@ -125,7 +129,7 @@ Match All Query
 ****************************************
 
 While the <<java-full-text-queries,full text queries>> will analyze the query
-string before executing, the _term-level queries_ operate on the exact terms
+string before executing, the _term-level queries operate on the exact terms
 that are stored in the inverted index.
 
 这些查询通常用于数字、日期以及枚举之类的结构化的数据, 而不是全文本字段. Alternatively, they allow you to craft
@@ -183,7 +187,8 @@ The queries in this group are:
     查询指定类型和文档ID列表的文档.
 
 
-==== 词条查询
+词条查询
+========================================
 
 参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-term-query.html[词条查询]
 
@@ -198,7 +203,8 @@ The queries in this group are:
 <2> 文本
 
 
-==== 多词条查询
+多词条查询
+========================================
 
 参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-terms-query.html[多词条查询]
 
@@ -211,7 +217,8 @@ The queries in this group are:
 <2> 值
 
 
-==== 范围查询
+范围查询
+========================================
 
 参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-range-query.html[范围查询]
 
@@ -241,7 +248,8 @@ The queries in this group are:
 <3> set `to` to 20 and `includeUpper` to `false`
 
 
-==== 存在查询
+存在查询
+========================================
 
 参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-exists-query.html[存在查询].
 
@@ -252,7 +260,8 @@ The queries in this group are:
 <1> 字段
 
 
-==== 前缀查询
+前缀查询
+========================================
 
 参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-prefix-query.html[前缀查询]
 
@@ -267,7 +276,8 @@ The queries in this group are:
 <2> 前缀
 
 
-==== 通配符查询
+通配符查询
+========================================
 
 参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-wildcard-query.html[通配符查询]
 
@@ -276,7 +286,8 @@ The queries in this group are:
     QueryBuilder qb = wildcardQuery("user", "k?mc*");
 
 
-==== 正则表达式查询
+正则表达式查询
+========================================
 
 参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-regexp-query.html[正则表达式查询]
 
@@ -290,7 +301,8 @@ The queries in this group are:
 <2> 正则表达式
 
 
-==== 模糊查询
+模糊查询
+========================================
 
 参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-fuzzy-query.html[模糊查询]
 
@@ -305,8 +317,8 @@ The queries in this group are:
 <2> 文本
 
 
-
-==== 类型查询
+类型查询
+========================================
 
 参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-type-query.html[类型查询]
 
@@ -317,7 +329,8 @@ The queries in this group are:
 <1> 类型名称
 
 
-==== 文档 Id 查询
+文档 Id 查询
+========================================
 
 
 参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-ids-query.html[文档 Id 查询]
@@ -337,8 +350,7 @@ The queries in this group are:
 复合查询
 ****************************************
 
-Compound queries wrap other compound or leaf queries, either to combine their
-results and scores, to change their behaviour, or to switch from query to
+Compound queries wrap other compound or leaf queries, either to combine their results and scores, to change their behaviour, or to switch from query to
 filter context.
 
 该组中的查询有:
@@ -378,7 +390,8 @@ documents which also match a `negative` query.
 对指定的索引执行一个查询，为其他索引执行另一个查询。
 
 
-==== Constant Score Query
+Constant Score Query
+========================================
 
 参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-constant-score-query.html[Constant Score Query]
 
@@ -393,7 +406,8 @@ documents which also match a `negative` query.
 <2> 查询分数
 
 
-==== 布尔查询
+布尔查询
+========================================
 
 参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-bool-query.html[布尔查询]
 
@@ -412,7 +426,8 @@ documents which also match a `negative` query.
 <4> 必须出现在匹配文档中但不对评分有贡献的查询。
 
 
-==== Dis Max Query
+Dis Max Query
+========================================
 
 参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-dis-max-query.html[Dis Max Query]
 
@@ -430,7 +445,8 @@ documents which also match a `negative` query.
 <4> tie breaker
 
 
-==== Function Score Query
+Function Score Query
+========================================
 
 参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-function-score-query.html[Function Score Query].
 
@@ -456,7 +472,8 @@ documents which also match a `negative` query.
 <3> 基于 age 字段添加另一个函数
 
 
-==== Boosting Query
+Boosting Query
+========================================
 
 参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-boosting-query.html[Boosting Query]
 
@@ -472,7 +489,8 @@ documents which also match a `negative` query.
 <3> negative boost
 
 
-==== 索引查询
+索引查询
+========================================
 
 过时[5.0.0, Search on the '_index' field instead]
 
@@ -518,7 +536,8 @@ documents which also match a `negative` query.
 单个索引中的两种类型的文档之间可以存在父子关系。因为子文档匹配特定的查询, `has_child` 查询会返回父文档, 而因为父文档匹配特定的查询, `has_parent` 查询会返回子文档。
 
 
-==== 嵌套查询
+嵌套查询
+========================================
 
 参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-nested-query.html[嵌套查询]
 
@@ -537,7 +556,8 @@ documents which also match a `negative` query.
 <3> 评分模式可以是 `ScoreMode.Max`, `ScoreMode.Min`, `ScoreMode.Total`, `ScoreMode.Avg` 或 `ScoreMode.None`
 
 
-==== Has Child Query
+Has Child Query
+========================================
 
 参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-has-child-query.html[Has Child Query]
 
@@ -554,7 +574,8 @@ documents which also match a `negative` query.
 <3> 评分模式可以是 `ScoreMode.Avg`, `ScoreMode.Max`, `ScoreMode.Min`, `ScoreMode.None` 或 `ScoreMode.Total`
 
 
-==== Has Parent Query
+Has Parent Query
+========================================
 
 参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-has-parent-query.html[Has Parent]
 
@@ -600,7 +621,8 @@ Elasticsearch 支持两种类型的地理数据:
     Find documents with geo-points within the specified polygon.
 
 
-==== 地理形状查询
+地理形状查询
+========================================
 
 参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-geo-shape-query.html[地理形状查询]
 
@@ -672,7 +694,8 @@ Elasticsearch 支持两种类型的地理数据:
 <6> The field specified as path containing the pre-indexed shape. Defaults to 'shape'.
 
 
-==== Geo Bounding Box Query
+Geo Bounding Box Query
+========================================
 
 参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-geo-bounding-box-query.html[Geo Bounding Box Query]
 
@@ -687,7 +710,8 @@ Elasticsearch 支持两种类型的地理数据:
 <3> 边界框底部右边点
 
 
-==== 地理距离查询
+地理距离查询
+========================================
 
 参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-geo-distance-query.html[地理距离查询]
 
@@ -702,7 +726,8 @@ Elasticsearch 支持两种类型的地理数据:
 <3> 到中心点的距离
 
 
-==== 地理多变形查询
+地理多变形查询
+========================================
 
 参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-geo-polygon-query.html[地理多变形查询]
 
@@ -741,10 +766,10 @@ This query allows a script to act as a filter.  Also see the
 This query finds percolator queries based on documents.
 
 
-==== More Like This Query (mlt)
+More Like This Query (mlt)
+========================================
 
-参见:
- * https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-mlt-query.html[More Like This Query]
+参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-mlt-query.html[More Like This Query]
 
 .. code-block:: java
 
@@ -761,7 +786,8 @@ This query finds percolator queries based on documents.
 <3> 忽略阈值
 <4> 生成的查询中词条的最大数量
 
-==== 脚本查询
+脚本查询
+========================================
 
 参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-script-query.html[脚本查询]
 
@@ -798,11 +824,10 @@ This query finds percolator queries based on documents.
 <4> 参数是 `<String, Object>` 类型的 `Map`
 
 
-==== Percolate Query
+Percolate Query
+========================================
 
-参见:
- * https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-percolate-query.html[Percolate Query]
-
+参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-percolate-query.html[Percolate Query]
 
 .. code-block:: java
 
@@ -810,8 +835,7 @@ This query finds percolator queries based on documents.
     TransportClient client = new PreBuiltTransportClient(settings);
     client.addTransportAddress(new InetSocketTransportAddress(new InetSocketAddress(InetAddresses.forString("127.0.0.1"), 9300)));
 
-Before the `percolate` query can be used an `percolator` mapping should be added and
-a document containing a percolator query should be indexed:
+Before the `percolate` query can be used an `percolator` mapping should be added and a document containing a percolator query should be indexed:
 
 .. code-block:: java
 
@@ -833,8 +857,7 @@ a document containing a percolator query should be indexed:
         .setRefreshPolicy(RefreshPolicy.IMMEDIATE) // Needed when the query shall be available immediately
         .get();
 
-This indexes the above term query under the name
-*myDesignatedQueryName*.
+This indexes the above term query under the name *myDesignatedQueryName*.
 
 In order to check a document against the registered queries, 使用下面的代码:
 
@@ -861,56 +884,52 @@ In order to check a document against the registered queries, 使用下面的代�
 Span queries
 ****************************************
 
-Span queries are low-level positional queries which provide expert control
-over the order and proximity of the specified terms. These are typically used
+Span queries are low-level positional queries which provide expert control over the order and proximity of the specified terms. These are typically used
 to implement very specific queries on legal documents or patents.
 
 Span queries cannot be mixed with non-span queries (with the exception of the `span_multi` query).
 
 该组中的查询有:
 
-<<java-query-dsl-span-term-query,`span_term` 查询>>::
+`span_term`查询
 
-The equivalent of the <<java-query-dsl-term-query,`term` query>> but for use with
-other span queries.
+    The equivalent of the <<java-query-dsl-term-query,`term` query>> but for use with other span queries.
 
-<<java-query-dsl-span-multi-term-query,`span_multi` 查询>>::
+`span_multi`查询
 
-Wraps a <<java-query-dsl-term-query,`term`>>, <<java-query-dsl-range-query,`range`>>,
+    Wraps a <<java-query-dsl-term-query,`term`>>, <<java-query-dsl-range-query,`range`>>,
 <<java-query-dsl-prefix-query,`prefix`>>, <<java-query-dsl-wildcard-query,`wildcard`>>,
 <<java-query-dsl-regexp-query,`regexp`>>, or <<java-query-dsl-fuzzy-query,`fuzzy`>> query.
 
-<<java-query-dsl-span-first-query,`span_first` 查询>>::
+`span_first`查询
 
-Accepts another span query whose matches must appear within the first N
-positions of the field.
+    Accepts another span query whose matches must appear within the first N  positions of the field.
 
-<<java-query-dsl-span-near-query,`span_near` 查询>>::
+`span_near`查询
 
-Accepts multiple span queries whose matches must be within the specified distance of each other, and possibly in the same order.
+    Accepts multiple span queries whose matches must be within the specified distance of each other, and possibly in the same order.
 
-<<java-query-dsl-span-or-query,`span_or` 查询>>::
+`span_or`查询
 
-Combines multiple span queries -- returns documents which match any of the
-specified queries.
+    Combines multiple span queries -- returns documents which match any of the specified queries.
 
-<<java-query-dsl-span-not-query,`span_not` 查询>>::
+`span_not`查询
 
 Wraps another span query, and excludes any documents which match that query.
 
-<<java-query-dsl-span-containing-query,`span_containing` 查询>>::
+`span_containing`查询
 
-Accepts a list of span queries, but only returns those spans which also match a second span query.
+    Accepts a list of span queries, but only returns those spans which also match a second span query.
 
-<<java-query-dsl-span-within-query,`span_within` 查询>>::
+`span_within`查询
 
-The result from a single span query is returned as long is its span falls
-within the spans returned by a list of other span queries.
+    The result from a single span query is returned as long is its span falls within the spans returned by a list of other span queries.
 
 
-==== Span Term Query
+Span Term Query
+========================================
 
-See https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-span-term-query.html[Span Term Query]
+参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-span-term-query.html[Span Term Query]
 
 .. code-block:: java
 
@@ -923,7 +942,8 @@ See https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-span-t
 <2> value
 
 
-==== Span Multi Term Query
+Span Multi Term Query
+========================================
 
 参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-span-multi-term-query.html[Span Multi Term Query]
 
@@ -936,7 +956,8 @@ See https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-span-t
 <1> 可以是任何继承了 `MultiTermQueryBuilder` 类的生成器。例如: `FuzzyQueryBuilder`, `PrefixQueryBuilder`, `RangeQueryBuilder`, `RegexpQueryBuilder` 或者 `WildcardQueryBuilder`.
 
 
-==== Span First Query
+Span First Query
+========================================
 
 参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-span-first-query.html[Span First Query]
 
@@ -951,9 +972,10 @@ See https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-span-t
 <2> 最大结束位置
 
 
-==== Span Near Query
+Span Near Query
+========================================
 
-See https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-span-near-query.html[Span Near Query]
+参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-span-near-query.html[Span Near Query]
 
 .. code-block:: java
 
@@ -969,9 +991,10 @@ See https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-span-n
 <3> whether matches are required to be in-order
 
 
-==== Span Or Query
+Span Or Query
+========================================
 
-See https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-span-or-query.html[Span Or Query]
+参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-span-or-query.html[Span Or Query]
 
 .. code-block:: java
 
@@ -983,7 +1006,8 @@ See https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-span-o
 <1> span term queries
 
 
-==== Span Not Query
+Span Not Query
+========================================
 
 参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-span-not-query.html[Span Not Query]
 
@@ -997,7 +1021,8 @@ See https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-span-o
 <2> span query whose matches must not overlap those returned
 
 
-==== Span Containing Query
+Span Containing Query
+========================================
 
 参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-span-containing-query.html[Span Containing Query]
 
@@ -1013,9 +1038,10 @@ See https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-span-o
 <2> `little` 部分
 
 
-==== Span Within Query
+Span Within Query
+========================================
 
-See https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-span-within-query.html[Span Within Query]
+参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-span-within-query.html[Span Within Query]
 
 .. code-block:: java
 
