@@ -1,25 +1,27 @@
+.. _client:
+
 ########################################
 客户端
 ########################################
 
 你可以以多种方式使用 *Java 客户端*:
 
-* 在现有集群上执行标准的 <>, <>, <> 和 <> 操作
+* 在现有集群上执行标准的 :ref:`index_api`, :ref:`get_api`, :ref:`delete_api` 和 :ref:`search_api` 操作
 * 在运行着的集群上执行管理任务
 
-获取一个 Elasticsearch 客户端很简单, 最常见的方式就是创建一个可以连接到集群的 <> 对象。
+获取一个 Elasticsearch 客户端很简单, 最常见的方式就是创建一个可以连接到集群的 :ref:`transport_client` 对象。
 
 .. important:: 客户端和集群中的节点必须使用相同的主版本 (例如, ``2.x`` 或 ``5.x``)。客户端可以连接到使用不同次要版本的集群 (例如 ``2.3.x``), 但是这样的话可能就没办法支持新的功能。理想情况下, 客户端和集群应该使用完全相同的版本。
 
 .. warning::
-  We plan on deprecating the TransportClient in Elasticsearch 7.0 and removing it completely in 8.0. Instead, you should be using the Java High Level REST Client, which executes HTTP requests rather than serialized Java requests. The migration guide describes all the steps needed to migrate.
+  我们计划在 Elasticsearch 7.0 版本中关闭 TransportClient 并且在 8.0 版本中完全删除它。你应该使用 Java 高级 REST 客户端作为替代, 它可以执行 HTTP 请求, 而不是序列化 Java 请求。`迁移指南 <https://www.elastic.co/guide/en/elasticsearch/client/java-rest/6.2/java-rest-high-level-migration.html>`_ 中描述了迁移所需的所有步骤。
 
-  The Java High Level REST Client currently has support for the more commonly used APIs, but there are a lot more that still need to be added. You can help us prioritise by telling us which missing APIs you need for your application by adding a comment to this issue: Java high-level REST client completeness.
+  Java 高级 REST 客户端目前已经支持常用的 API, 但是仍然有很多需要添加进来。你可以对 `Java 高级 REST 客户端完整性 <https://github.com/elastic/elasticsearch/issues/27205>`_ 这个问题添加评论来告诉我们你的应用程序需要哪些缺少的API，从而帮助我们确定优先级。
 
-  Any missing APIs can always be implemented today by using the low level Java REST Client with JSON request and response bodies.
+  任何缺少的 API 现在都可以通过使用具有 JSON 请求和响应体的 `低级 Java REST 客户端 <https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/java-rest-low.html>`_ 来实现。
 
 
-.. _TransportClient:
+.. _transport_client:
 
 ****************************************
 传输客户端
