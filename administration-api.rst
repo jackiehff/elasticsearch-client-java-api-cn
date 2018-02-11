@@ -30,7 +30,7 @@ Elasticsearch 提供了一套完整的 Java API 来处理管理任务.
 创建索引
 ========================================
 
-使用 <<java-admin-indices,`IndicesAdminClient`>> 对象, 你可以创建一个使用所有默认设置并且没有映射的索引:
+使用 IndicesAdminClient 对象, 你可以创建一个使用所有默认设置并且没有映射的索引:
 
 .. code-block:: java
 
