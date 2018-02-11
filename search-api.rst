@@ -5,7 +5,7 @@
 ########################################
 
 
-搜索 API 允许用户执行搜索查询并返回匹配查询的搜索命中结果。它可以跨一个或多个索引以及跨一个或多个类型执行。可以使用<< java-query-dsl，Java 查询 API >> 提供的查询功能。搜索请求的正文是使用 `SearchSourceBuilder` 对象来构建的。下面是一个代码示例:
+搜索 API 允许用户执行搜索查询并返回匹配查询的搜索命中结果。它可以跨一个或多个索引以及跨一个或多个类型执行。可以使用 :ref:`query_dsl` 提供的查询功能。搜索请求的正文是使用 `SearchSourceBuilder` 对象来构建的。下面是一个代码示例:
 
 .. code-block:: java
 
@@ -32,14 +32,14 @@
 
 .. note::  尽管 Java API 定义了额外的搜索类型 QUERY_AND_FETCH 和 DFS_QUERY_AND_FETCH, 这些模式也都经过了内部优化, API的使用者不需要显示地指定搜索类型.
 
-有关搜索操作的更多信息, 请查看 REST https://www.elastic.co/guide/en/elasticsearch/reference/5.2/search.html[搜索] 文档。
+有关搜索操作的更多信息, 请查看 REST `搜索 <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/search.html>`_ 文档。
 
 
 ****************************************
 在 Java 中使用滚动
 ****************************************
 
-首先请阅读 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/search-request-scroll.html[滚动文档]!
+首先请阅读 `滚动文档 <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/search-request-scroll.html>`_ !
 
 .. code-block:: java
 
@@ -66,7 +66,7 @@
 MultiSearch API
 ****************************************
 
-参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/search-multi-search.html[MultiSearch API 查询]文档
+参见 `Multi Search API <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/search-multi-search.html>`_ 文档。
 
 .. code-block:: java
 
@@ -116,7 +116,7 @@ MultiSearch API
 
 
 ****************************************
-之后终止
+Terminate After
 ****************************************
 
 当到达每个分片要收集文档的最大数量时, 查询执行操作将提前终止。如果设置了这个数量, 你可以在 `SearchResponse` 对象上调用 `isTerminatedEarly()` 方法来检查操作是否提前终止:
@@ -138,7 +138,7 @@ MultiSearch API
 搜索模板
 ****************************************
 
-参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/search-template.html[搜索模板] 文档
+参见 `搜索模板 <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/search-template.html>`_ 文档。
 
 将你的模板参数定义成一个 `Map<String,Object>`:
 
@@ -149,7 +149,7 @@ MultiSearch API
 
 你可以使用存储在 `config/scripts` 中的搜索模板。例如, 如果你有一个名为 `config/scripts/template_gender.mustache` 的文件, 内容如下:
 
-.. code-block:: json
+.. code-block:: js
 
     {
         "template" : {
@@ -161,15 +161,13 @@ MultiSearch API
         }
     }
 
-// NOTCONSOLE
-
 创建你的搜索模板请求:
 
 .. code-block:: java
 
     SearchResponse sr = new SearchTemplateRequestBuilder(client)
         .setScript("template_gender")                 <1>
-        .setScriptType(ScriptType.FILE) <2>
+        .setScriptType(ScriptService.ScriptType.FILE) <2>
         .setScriptParams(template_params)             <3>
         .setRequest(new SearchRequest())              <4>
         .get()                                        <5>
