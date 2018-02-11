@@ -45,7 +45,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Elasticsearch 客户端 Java API 中文文档'
+project = u'Elasticsearch客户端Java API中文文档'
 copyright = '2018, jackiehff'
 author = 'jackiehff'
 
