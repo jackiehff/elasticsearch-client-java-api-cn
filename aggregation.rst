@@ -57,7 +57,7 @@ Metrics聚合
 最小值聚合
 ========================================
 
-下面展示了如何使用 Java API 进行 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/search-aggregations-metrics-min-aggregation.html[最小值聚合]。
+下面展示了如何使用 Java API 进行 `最小值聚合 <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/search-aggregations-metrics-min-aggregation.html>`_ 。
 
 创建聚合请求
 ----------------------------------------
@@ -91,7 +91,7 @@ Metrics聚合
 最大值聚合
 ========================================
 
-下面展示了如何使用 Java API 进行 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/search-aggregations-metrics-max-aggregation.html[最大值聚合]。
+下面展示了如何使用 Java API 进行 `最大值聚合 <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/search-aggregations-metrics-max-aggregation.html>`_ 。
 
 
 创建聚合请求
@@ -126,7 +126,7 @@ Metrics聚合
 求和聚合
 ========================================
 
-下面展示了如何使用 Java API 进行 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/search-aggregations-metrics-sum-aggregation.html[求和聚合]。
+下面展示了如何使用 Java API 进行 `求和聚合 <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/search-aggregations-metrics-sum-aggregation.html>`_ 。
 
 
 创建聚合请求
@@ -161,7 +161,7 @@ Metrics聚合
 平均值聚合
 ========================================
 
-下面展示了如何使用 Java API 进行 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/search-aggregations-metrics-avg-aggregation.html[平均值聚合]。
+下面展示了如何使用 Java API 进行 `平均值聚合 <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/search-aggregations-metrics-avg-aggregation.html>`_ 。
 
 
 创建聚合请求
@@ -196,7 +196,7 @@ Metrics聚合
 统计聚合
 ========================================
 
-下面展示了如何使用 Java API 进行 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/search-aggregations-metrics-stats-aggregation.html[统计聚合]。
+下面展示了如何使用 Java API 进行 `统计聚合 <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/search-aggregations-metrics-stats-aggregation.html>`_ 。
 
 
 创建聚合请求
@@ -235,7 +235,7 @@ Metrics聚合
 扩展统计聚合
 ========================================
 
-下面展示了如何使用 Java API 进行 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/search-aggregations-metrics-extendedstats-aggregation.html[扩展统计聚合]。
+下面展示了如何使用 Java API 进行 `扩展统计聚合 <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/search-aggregations-metrics-extendedstats-aggregation.html>`_ 。
 
 
 创建聚合请求
@@ -277,7 +277,7 @@ Metrics聚合
 值计数聚合
 ========================================
 
-下面展示了如何使用 Java API 进行 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/search-aggregations-metrics-valuecount-aggregation.html[值计数聚合]。
+下面展示了如何使用 Java API 进行 `值计数聚合 <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/search-aggregations-metrics-valuecount-aggregation.html>`_ 。
 
 
 创建聚合请求
@@ -312,7 +312,7 @@ Metrics聚合
 百分比聚合
 ========================================
 
-下面展示了如何使用 Java API 进行 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/search-aggregations-metrics-percentile-aggregation.html[百分比聚合]。
+下面展示了如何使用 Java API 进行 `百分比聚合 <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/search-aggregations-metrics-percentile-aggregation.html>`_ 。
 
 
 创建聚合请求
@@ -376,7 +376,7 @@ Metrics聚合
 百分比范围聚合
 ========================================
 
-下面展示了如何使用 Java API 进行 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/search-aggregations-metrics-percentile-rank-aggregation.html[百分比范围聚合]。
+下面展示了如何使用 Java API 进行 `百分比范围聚合 <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/search-aggregations-metrics-percentile-rank-aggregation.html>`_ 。
 
 
 创建聚合请求
@@ -427,7 +427,7 @@ Metrics聚合
 基数聚合
 ========================================
 
-下面展示了如何使用 Java API 进行 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/search-aggregations-metrics-cardinality-aggregation.html[基数聚合]。
+下面展示了如何使用 Java API 进行 `基数聚合 <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/search-aggregations-metrics-cardinality-aggregation.html>`_ 。
 
 
 创建聚合请求
@@ -463,7 +463,7 @@ Metrics聚合
 ========================================
 
 
-下面展示了如何使用 Java API 进行 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/search-aggregations-metrics-geobounds-aggregation.html[地理边界聚合]。
+下面展示了如何使用 Java API 进行 `地理边界聚合 <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/search-aggregations-metrics-geobounds-aggregation.html>`_ 。
 
 
 创建聚合请求
@@ -507,7 +507,7 @@ Metrics聚合
 Top Hits聚合
 ========================================
 
-下面展示了如何使用 Java API 进行 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/search-aggregations-metrics-top-hits-aggregation.html[Top Hits聚合]。
+下面展示了如何使用 Java API 进行 `Top Hits聚合 <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/search-aggregations-metrics-top-hits-aggregation.html>`_ 。
 
 
 创建聚合请求
@@ -583,7 +583,7 @@ Top Hits聚合
 脚本度量聚合
 ========================================
 
-下面展示了如何使用 Java API 进行 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/search-aggregations-metrics-scripted-metric-aggregation.html[脚本度量聚合]。
+下面展示了如何使用 Java API 进行 `脚本度量聚合 <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/search-aggregations-metrics-scripted-metric-aggregation.html>`_ 。
 
 如果你想要在一个嵌入式的数据节点上运行 Groovy 脚本, 不要忘了将 Groovy 添加到你的类路径中(例如用于单元测试)。
 例如, 你可以将下面的依赖添加到 Maven 的 `pom.xml` 文件中:
@@ -692,7 +692,7 @@ Bucket聚合
 全局聚合
 ========================================
 
-下面展示了如何使用 Java API 进行 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/search-aggregations-bucket-global-aggregation.html[全局聚合]。
+下面展示了如何使用 Java API 进行 `全局聚合 <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/search-aggregations-bucket-global-aggregation.html>`_ 。
 
 
 创建聚合请求
@@ -726,7 +726,7 @@ Bucket聚合
 过滤器聚合
 ========================================
 
-下面展示了如何使用 Java API 进行 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/search-aggregations-bucket-filter-aggregation.html[过滤器聚合]。
+下面展示了如何使用 Java API 进行 `过滤器聚合 <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/search-aggregations-bucket-filter-aggregation.html>`_ 。
 
 
 创建聚合请求
@@ -759,7 +759,7 @@ Bucket聚合
 多过滤器聚合
 ========================================
 
-下面展示了如何使用 Java API 进行 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/search-aggregations-bucket-filters-aggregation.html[多过滤器聚合]。
+下面展示了如何使用 Java API 进行 `多过滤器聚合 <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/search-aggregations-bucket-filters-aggregation.html>`_ 。
 
 
 创建聚合请求
@@ -808,7 +808,7 @@ Bucket聚合
 Missing Aggregation
 ========================================
 
-下面展示了如何使用 Java API 进行 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/search-aggregations-bucket-missing-aggregation.html[Missing Aggregation]。
+下面展示了如何使用 Java API 进行 `Missing Aggregation <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/search-aggregations-bucket-missing-aggregation.html>`_ 。
 
 
 创建聚合请求
@@ -840,7 +840,7 @@ Missing Aggregation
 嵌套聚合
 ========================================
 
-下面展示了如何使用 Java API 进行 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/search-aggregations-bucket-nested-aggregation.html[嵌套聚合]。
+下面展示了如何使用 Java API 进行 `嵌套聚合 <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/search-aggregations-bucket-nested-aggregation.html>`_ 。
 
 
 创建聚合请求
@@ -873,7 +873,7 @@ Missing Aggregation
 反向嵌套聚合
 ========================================
 
-下面展示了如何使用 Java API 进行 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/search-aggregations-bucket-reverse-nested-aggregation.html[反向嵌套聚合]。
+下面展示了如何使用 Java API 进行 `反向嵌套聚合 <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/search-aggregations-bucket-reverse-nested-aggregation.html>`_ 。
 
 
 创建聚合请求
@@ -921,7 +921,7 @@ Missing Aggregation
 Children聚合
 ========================================
 
-下面展示了如何使用 Java API 进行 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/search-aggregations-bucket-children-aggregation.html[Children 聚合]。
+下面展示了如何使用 Java API 进行 `Children 聚合 <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/search-aggregations-bucket-children-aggregation.html>`_ 。
 
 
 创建聚合请求
@@ -957,7 +957,7 @@ Children聚合
 词条聚合
 ========================================
 
-下面展示了如何使用 Java API 进行 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/search-aggregations-bucket-terms-aggregation.html[词条聚合]。
+下面展示了如何使用 Java API 进行 `词条聚合 <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/search-aggregations-bucket-terms-aggregation.html>`_ 。
 
 
 创建聚合请求
@@ -1029,7 +1029,7 @@ Children聚合
 重要词条聚合
 ========================================
 
-下面展示了如何使用 Java API 进行 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/search-aggregations-bucket-significantterms-aggregation.html[重要词条聚合]。
+下面展示了如何使用 Java API 进行 `重要词条聚合 <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/search-aggregations-bucket-significantterms-aggregation.html>`_ 。
 
 
 创建聚合请求
@@ -1075,7 +1075,7 @@ Children聚合
 范围聚合
 ========================================
 
-下面展示了如何使用 Java API 进行 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/search-aggregations-bucket-range-aggregation.html[范围聚合]。
+下面展示了如何使用 Java API 进行 `范围聚合 <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/search-aggregations-bucket-range-aggregation.html>`_ 。
 
 
 创建聚合请求
@@ -1130,7 +1130,7 @@ Children聚合
 日期范围聚合
 ========================================
 
-下面展示了如何使用 Java API 进行 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/search-aggregations-bucket-daterange-aggregation.html[日期范围聚合]。
+下面展示了如何使用 Java API 进行 `日期范围聚合 <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/search-aggregations-bucket-daterange-aggregation.html>`_ 。
 
 
 创建聚合请求
@@ -1186,7 +1186,7 @@ Children聚合
 IP范围聚合
 ========================================
 
-下面展示了如何使用 Java API 进行 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/search-aggregations-bucket-iprange-aggregation.html[Ip 范围聚合]。
+下面展示了如何使用 Java API 进行 `IP范围聚合 <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/search-aggregations-bucket-iprange-aggregation.html>`_ 。
 
 
 创建聚合请求
@@ -1260,7 +1260,7 @@ IP范围聚合
 直方图聚合
 ========================================
 
-下面展示了如何使用 Java API 进行 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/search-aggregations-bucket-histogram-aggregation.html[直方图聚合]。
+下面展示了如何使用 Java API 进行 `直方图聚合 <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/search-aggregations-bucket-histogram-aggregation.html>`_ 。
 
 
 创建聚合请求
@@ -1302,7 +1302,7 @@ IP范围聚合
 日期直方图聚合
 ========================================
 
-下面展示了如何使用 Java API 进行 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/search-aggregations-bucket-datehistogram-aggregation.html[日期直方图聚合].
+下面展示了如何使用 Java API 进行 `日期直方图聚合 <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/search-aggregations-bucket-datehistogram-aggregation.html>`_ 。
 
 
 创建聚合请求
@@ -1367,7 +1367,7 @@ IP范围聚合
 地理距离聚合
 ========================================
 
-下面展示了如何使用 Java API 进行 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/search-aggregations-bucket-geodistance-aggregation.html[地理距离聚合]。
+下面展示了如何使用 Java API 进行 `地理距离聚合 <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/search-aggregations-bucket-geodistance-aggregation.html>`_ 。
 
 
 创建聚合请求
@@ -1422,7 +1422,7 @@ IP范围聚合
 地理哈希网格聚合
 ========================================
 
-下面展示了如何使用 Java API 进行 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/search-aggregations-bucket-geohashgrid-aggregation.html[地理哈希网格聚合]。
+下面展示了如何使用 Java API 进行 `地理哈希网格聚合 <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/search-aggregations-bucket-geohashgrid-aggregation.html>`_ 。
 
 
 创建聚合请求
