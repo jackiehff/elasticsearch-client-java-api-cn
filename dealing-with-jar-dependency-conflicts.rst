@@ -10,4 +10,4 @@
 
 * 第二个解决方案就是重新安置冲突的依赖, 并且使用自己的应用程序或者是 Elasticsearch 以及 Elasticsearch 客户端所依赖的任何插件来隐藏它们。
 
-` "隐藏或不隐藏"这篇博客文章 <https://www.elastic.co/blog/to-shade-or-not-to-shade>`_ 描述了这样做的所有步骤。
+`"隐藏或不隐藏"这篇博客文章 <https://www.elastic.co/blog/to-shade-or-not-to-shade>`_ 描述了这样做的所有步骤。
