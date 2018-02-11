@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Elasticsearch 客户端 Java API 中文文档
+Elasticsearch客户端Java API中文文档
 ==============================================
 
 .. toctree::
