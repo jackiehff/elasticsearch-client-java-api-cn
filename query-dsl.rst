@@ -1,3 +1,5 @@
+.. _query_dsl:
+
 ########################################
 查询DSL
 ########################################
@@ -19,7 +21,7 @@ Elasticsearch 以类似REST`查询DSL <https://www.elastic.co/guide/en/elasticse
 Match All Query
 ****************************************
 
-参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-match-all-query.html[Match All Query]
+参见 `Match All Query <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/query-dsl-match-all-query.html>`_ 。
 
 .. code-block:: java
 
@@ -58,7 +60,7 @@ Match All Query
 匹配查询
 ========================================
 
-参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-match-query.html[匹配查询]
+参见 `匹配查询 <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/query-dsl-match-query.html>`_ 。
 
 .. code-block:: java
 
@@ -74,7 +76,7 @@ Match All Query
 Multi Match Query
 ========================================
 
-参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-multi-match-query.html[Multi Match Query]
+参见 `Multi Match Query <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/query-dsl-multi-match-query.html>`_ 。
 
 .. code-block:: java
 
@@ -90,7 +92,7 @@ Multi Match Query
 通用词条查询
 ========================================
 
-参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-common-terms-query.html[通用词条查询]
+参见 `通用词条查询 <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/query-dsl-common-terms-query.html>`_ 。
 
 .. code-block:: java
 
@@ -103,7 +105,7 @@ Multi Match Query
 查询字符串查询
 ========================================
 
-参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-query-string-query.html[查询字符串查询]
+参见 `查询字符串查询 <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/query-dsl-query-string-query.html>`_ 。
 
 .. code-block:: java
 
@@ -115,7 +117,7 @@ Multi Match Query
 简单查询字符串查询
 ========================================
 
-参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-simple-query-string-query.html[简单查询字符串查询]
+参见 `简单查询字符串查询 <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/query-dsl-simple-query-string-query.html>`_ 。
 
 .. code-block:: java
 
@@ -190,7 +192,7 @@ The queries in this group are:
 词条查询
 ========================================
 
-参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-term-query.html[词条查询]
+参见 `词条查询 <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/query-dsl-term-query.html>`_ 。
 
 .. code-block:: java
 
@@ -206,7 +208,7 @@ The queries in this group are:
 多词条查询
 ========================================
 
-参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-terms-query.html[多词条查询]
+参见 `多词条查询 <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/query-dsl-terms-query.html>`_ 。
 
 .. code-block:: java
 
@@ -220,7 +222,7 @@ The queries in this group are:
 范围查询
 ========================================
 
-参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-range-query.html[范围查询]
+参见 `范围查询 <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/query-dsl-range-query.html>`_ 。
 
 .. code-block:: java
 
@@ -251,7 +253,7 @@ The queries in this group are:
 存在查询
 ========================================
 
-参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-exists-query.html[存在查询].
+参见 `存在查询 <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/query-dsl-exists-query.html>`_ 。
 
 .. code-block:: java
 
@@ -263,7 +265,7 @@ The queries in this group are:
 前缀查询
 ========================================
 
-参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-prefix-query.html[前缀查询]
+参见 `前缀查询 <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/query-dsl-prefix-query.html>`_ 。
 
 .. code-block:: java
 
@@ -279,7 +281,7 @@ The queries in this group are:
 通配符查询
 ========================================
 
-参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-wildcard-query.html[通配符查询]
+参见 `通配符查询 <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/query-dsl-wildcard-query.html>`_ 。
 
 .. code-block:: java
 
@@ -289,7 +291,7 @@ The queries in this group are:
 正则表达式查询
 ========================================
 
-参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-regexp-query.html[正则表达式查询]
+参见 `正则表达式查询 <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/query-dsl-regexp-query.html>`_ 。
 
 .. code-block:: java
 
@@ -304,7 +306,7 @@ The queries in this group are:
 模糊查询
 ========================================
 
-参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-fuzzy-query.html[模糊查询]
+参见 `模糊查询 <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/query-dsl-fuzzy-query.html>`_ 。
 
 .. code-block:: java
 
@@ -320,7 +322,7 @@ The queries in this group are:
 类型查询
 ========================================
 
-参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-type-query.html[类型查询]
+参见 `类型查询 <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/query-dsl-type-query.html>`_ 。
 
 .. code-block:: java
 
@@ -333,7 +335,7 @@ The queries in this group are:
 ========================================
 
 
-参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-ids-query.html[文档 Id 查询]
+参见 `文档ID查询 <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/query-dsl-ids-query.html>`_ 。
 
 .. code-block:: java
 
@@ -393,7 +395,7 @@ documents which also match a `negative` query.
 Constant Score Query
 ========================================
 
-参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-constant-score-query.html[Constant Score Query]
+参见 `Constant Score Query <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/query-dsl-constant-score-query.html>`_ 。
 
 .. code-block:: java
 
@@ -409,7 +411,7 @@ Constant Score Query
 布尔查询
 ========================================
 
-参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-bool-query.html[布尔查询]
+参见 `布尔查询 <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/query-dsl-bool-query.html>`_ 。
 
 .. code-block:: java
 
@@ -429,7 +431,7 @@ Constant Score Query
 Dis Max Query
 ========================================
 
-参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-dis-max-query.html[Dis Max Query]
+参见 `Dis Max Query <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/query-dsl-dis-max-query.html>`_ 。
 
 .. code-block:: java
 
@@ -448,7 +450,7 @@ Dis Max Query
 Function Score Query
 ========================================
 
-参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-function-score-query.html[Function Score Query].
+参见 `Function Score Query <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/query-dsl-function-score-query.html>`_ 。
 
 要使用 `ScoreFunctionBuilders`, 只需要在你的类中引入它们:
 
@@ -475,7 +477,7 @@ Function Score Query
 Boosting Query
 ========================================
 
-参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-boosting-query.html[Boosting Query]
+参见 `Boosting Query <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/query-dsl-boosting-query.html>`_ 。
 
 .. code-block:: java
 
@@ -494,7 +496,7 @@ Boosting Query
 
 过时[5.0.0, Search on the '_index' field instead]
 
-参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-indices-query.html[索引查询]
+参见 `索引查询 <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/query-dsl-indices-query.html>`_ 。
 
 .. code-block:: java
 
@@ -539,7 +541,7 @@ Boosting Query
 嵌套查询
 ========================================
 
-参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-nested-query.html[嵌套查询]
+参见 `嵌套查询 <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/query-dsl-nested-query.html>`_ 。
 
 .. code-block:: java
 
@@ -559,7 +561,7 @@ Boosting Query
 Has Child Query
 ========================================
 
-参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-has-child-query.html[Has Child Query]
+参见 `Has Child Query <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/query-dsl-has-child-query.html>`_ 。
 
 .. code-block:: java
 
@@ -577,7 +579,7 @@ Has Child Query
 Has Parent Query
 ========================================
 
-参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-has-parent-query.html[Has Parent]
+参见 `Has Parent Query <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/query-dsl-has-parent-query.html>`_ 。
 
 .. code-block:: java
 
@@ -624,7 +626,7 @@ Elasticsearch 支持两种类型的地理数据:
 地理形状查询
 ========================================
 
-参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-geo-shape-query.html[地理形状查询]
+参见 `地理形状查询 <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/query-dsl-geo-shape-query.html>`_ 。
 
 注意: `geo_shape` 类型使用了 `Spatial4J` 和 `JTS`, 它们都是可选的依赖。因此为了使用这种类型, 你必须要将 `Spatial4J` 和 `JTS` 依赖添加到你的类路径中:
 
@@ -648,8 +650,8 @@ Elasticsearch 支持两种类型的地理数据:
         </exclusions>
     </dependency>
 
-<1> 在 http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.locationtech.spatial4j%22%20AND%20a%3A%22spatial4j%22[Maven 中央仓库]中检查更新
-<2> 在 http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.vividsolutions%22%20AND%20a%3A%22jts%22[Maven 中央仓库]中检查更新
+<1> 在 `Maven 中央仓库 <http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.locationtech.spatial4j%22%20AND%20a%3A%22spatial4j%22>`_ 中检查更新
+<2> 在 `Maven 中央仓库 <http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.vividsolutions%22%20AND%20a%3A%22jts%22>`_ 中检查更新
 
 .. code-block:: java
 
@@ -697,7 +699,7 @@ Elasticsearch 支持两种类型的地理数据:
 Geo Bounding Box Query
 ========================================
 
-参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-geo-bounding-box-query.html[Geo Bounding Box Query]
+参见 `Geo Bounding Box Query <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/query-dsl-geo-bounding-box-query.html>`_ 。
 
 .. code-block:: java
 
@@ -713,7 +715,7 @@ Geo Bounding Box Query
 地理距离查询
 ========================================
 
-参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-geo-distance-query.html[地理距离查询]
+参见 `地理距离查询 <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/query-dsl-geo-distance-query.html>`_ 。
 
 .. code-block:: java
 
@@ -729,7 +731,7 @@ Geo Bounding Box Query
 地理多变形查询
 ========================================
 
-参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-geo-polygon-query.html[地理多变形查询]
+参见 `地理多变形查询 <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/query-dsl-geo-polygon-query.html>`_ 。
 
 .. code-block:: java
 
@@ -769,7 +771,7 @@ This query finds percolator queries based on documents.
 More Like This Query (mlt)
 ========================================
 
-参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-mlt-query.html[More Like This Query]
+参见 `More Like This Query <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/query-dsl-mlt-query.html>`_ 。
 
 .. code-block:: java
 
@@ -789,7 +791,7 @@ More Like This Query (mlt)
 脚本查询
 ========================================
 
-参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-script-query.html[脚本查询]
+参见 `脚本查询 <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/query-dsl-script-query.html>`_ 。
 
 .. code-block:: java
 
@@ -827,7 +829,7 @@ More Like This Query (mlt)
 Percolate Query
 ========================================
 
-参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-percolate-query.html[Percolate Query]
+参见 `Percolate Query <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/query-dsl-percolate-query.html>`_ 。
 
 .. code-block:: java
 
@@ -929,7 +931,7 @@ Wraps another span query, and excludes any documents which match that query.
 Span Term Query
 ========================================
 
-参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-span-term-query.html[Span Term Query]
+参见 `Span Term Query <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/query-dsl-span-term-query.html>`_ 。
 
 .. code-block:: java
 
@@ -945,7 +947,7 @@ Span Term Query
 Span Multi Term Query
 ========================================
 
-参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-span-multi-term-query.html[Span Multi Term Query]
+参见 `Span Multi Term Query <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/query-dsl-span-multi-term-query.html>`_ 。
 
 .. code-block:: java
 
@@ -959,7 +961,7 @@ Span Multi Term Query
 Span First Query
 ========================================
 
-参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-span-first-query.html[Span First Query]
+参见 `Span First Query <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/query-dsl-span-first-query.html>`_ 。
 
 .. code-block:: java
 
@@ -975,7 +977,7 @@ Span First Query
 Span Near Query
 ========================================
 
-参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-span-near-query.html[Span Near Query]
+参见 `Span Near Query <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/query-dsl-span-near-query.html>`_ 。
 
 .. code-block:: java
 
@@ -994,7 +996,7 @@ Span Near Query
 Span Or Query
 ========================================
 
-参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-span-or-query.html[Span Or Query]
+参见 `Span Or Query <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/query-dsl-span-or-query.html>`_ 。
 
 .. code-block:: java
 
@@ -1009,7 +1011,7 @@ Span Or Query
 Span Not Query
 ========================================
 
-参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-span-not-query.html[Span Not Query]
+参见 `Span Not Query <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/query-dsl-span-not-query.html>`_ 。
 
 .. code-block:: java
 
@@ -1024,7 +1026,7 @@ Span Not Query
 Span Containing Query
 ========================================
 
-参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-span-containing-query.html[Span Containing Query]
+参见 `Span Containing Query <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/query-dsl-span-containing-query.html>`_ 。
 
 .. code-block:: java
 
@@ -1041,7 +1043,7 @@ Span Containing Query
 Span Within Query
 ========================================
 
-参见 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl-span-within-query.html[Span Within Query]
+参见 `Span Within Query <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/query-dsl-span-within-query.html>`_ 。
 
 .. code-block:: java
 
