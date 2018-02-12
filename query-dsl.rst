@@ -4,7 +4,7 @@
 查询DSL
 ########################################
 
-Elasticsearch 以类似REST`查询DSL <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/query-dsl.html>`_ 的方式提供了一套完整的Java查询DSL。查询构造器工厂是 `QueryBuilders`。一旦查询准备好之后, 你可以使用 :ref:`search_api`。
+Elasticsearch 以类似REST `查询DSL <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/query-dsl.html>`_ 的方式提供了一套完整的Java查询DSL。查询构造器工厂是 `QueryBuilders`。一旦查询准备好之后, 你可以使用 :ref:`search_api`。
 
 要使用 `QueryBuilders`, 只需要在你的类中引入:
 
@@ -70,8 +70,8 @@ Match All Query
             "name",                    <1>
             "kimchy elasticsearch");   <2>
 
-<1> 字段
-<2> 文本
+#. 字段
+#. 文本
 
 
 Multi Match Query
@@ -86,8 +86,8 @@ Multi Match Query
             "user", "message");               <2>
 
 
-<1> 文本
-<2> 字段
+#. 文本
+#. 字段
 
 
 通用词条查询
@@ -100,8 +100,8 @@ Multi Match Query
     commonTermsQuery("name",        <1>
                      "kimchy");     <2>
 
-<1> 字段
-<2> 值
+#. 字段
+#. 值
 
 查询字符串查询
 ========================================
@@ -191,8 +191,8 @@ low-level queries, foregoing the analysis process.
             "name",      <1>
             "kimchy");   <2>
 
-<1> 字段
-<2> 文本
+#. 字段
+#. 文本
 
 
 多词条查询
@@ -205,8 +205,8 @@ low-level queries, foregoing the analysis process.
     termsQuery("tags",                          <1>
             "blue", "pill");                    <2>
 
-<1> 字段
-<2> 值
+#. 字段
+#. 值
 
 
 范围查询
@@ -222,11 +222,11 @@ low-level queries, foregoing the analysis process.
         .includeLower(true)                 <4>
         .includeUpper(false);               <5>
 
-<1> 字段
-<2> from
-<3> to
-<4> 包含较低值意味着为 `false` 时 `from` 是 `gt` 而为 `true' 时 `from` 是 `gte`。
-<5> 包含较高值意味着为 `false` 时 `to` 是 `lt` 而为 `false` 时 `to` 是 `lte`。
+#. 字段
+#. from
+#. to
+#. 包含较低值意味着为 `false` 时 `from` 是 `gt` 而为 `true' 时 `from` 是 `gte`。
+#. 包含较高值意味着为 `false` 时 `to` 是 `lt` 而为 `false` 时 `to` 是 `lte`。
 
 .. code-block:: java
 
@@ -235,9 +235,9 @@ low-level queries, foregoing the analysis process.
         .gte("10")                        <2>
         .lt("20");                        <3>
 
-<1> 字段
-<2> 设置 `from` 值为 10,  `includeLower` 值为 `true`
-<3> 设置 `to` 值为 20, `includeUpper` 值为 `false`
+#. 字段
+#. 设置 `from` 值为 10,  `includeLower` 值为 `true`
+#. 设置 `to` 值为 20, `includeUpper` 值为 `false`
 
 
 存在查询
@@ -249,7 +249,7 @@ low-level queries, foregoing the analysis process.
 
     existsQuery("name");       <1>
 
-<1> 字段
+#. 字段
 
 
 前缀查询
@@ -264,8 +264,8 @@ low-level queries, foregoing the analysis process.
             "heine");       <2>
 
 
-<1> 字段
-<2> 前缀
+#. 字段
+#. 前缀
 
 
 通配符查询
@@ -279,8 +279,8 @@ low-level queries, foregoing the analysis process.
             "user",           <1>
             "k?mch*");        <2>
 
-<1> 字段
-<2> 通配符表达式
+#. 字段
+#. 通配符表达式
 
 
 正则表达式查询
@@ -294,8 +294,8 @@ low-level queries, foregoing the analysis process.
             "name.first",        <1>
             "s.*y");             <2>
 
-<1> 字段
-<2> 正则表达式
+#. 字段
+#. 正则表达式
 
 
 模糊查询
@@ -310,8 +310,8 @@ low-level queries, foregoing the analysis process.
             "kimzhy");    <2>
 
 
-<1> 字段
-<2> 文本
+#. 字段
+#. 文本
 
 
 类型查询
@@ -323,7 +323,7 @@ low-level queries, foregoing the analysis process.
 
     typeQuery("my_type");   <1>
 
-<1> 类型名称
+#. 类型名称
 
 
 文档ID查询
@@ -340,7 +340,7 @@ low-level queries, foregoing the analysis process.
     idsQuery()                                  <1>
             .addIds("1", "4", "100");
 
-<1> 类型是可选的
+#. 类型是可选的
 
 
 ****************************************
@@ -398,8 +398,8 @@ Constant Score Query
             termQuery("name","kimchy"))     <1>
         .boost(2.0f);                       <2>
 
-<1> 查询
-<2> 查询分数
+#. 查询
+#. 查询分数
 
 
 布尔查询
@@ -416,11 +416,11 @@ Constant Score Query
             .should(termQuery("content", "test3"))  <4>
             .filter(termQuery("content", "test5")); <5>
 
-<1> must 查询
-<2>
-<3> must not 查询
-<4> should 查询
-<5> 必须出现在匹配文档中但不对评分有贡献的查询。
+#. must 查询
+#.
+#. must not 查询
+#. should 查询
+#. 必须出现在匹配文档中但不对评分有贡献的查询。
 
 
 Dis Max Query
@@ -436,10 +436,10 @@ Dis Max Query
             .boost(1.2f)                                    <3>
             .tieBreaker(0.7f);                              <4>
 
-<1> 添加查询
-<2> 添加查询
-<3> boost factor
-<4> tie breaker
+#. 添加查询
+#. 添加查询
+#. boost factor
+#. tie breaker
 
 
 Function Score Query
@@ -464,9 +464,9 @@ Function Score Query
     };
     functionScoreQuery(functions);
 
-<1> 基于查询添加第一个函数
-<2> 基于给定的种子随机化评分
-<3> 基于 age 字段添加另一个函数
+#. 基于查询添加第一个函数
+#. 基于给定的种子随机化评分
+#. 基于 age 字段添加另一个函数
 
 
 Boosting Query
@@ -481,9 +481,9 @@ Boosting Query
                 termQuery("name","dadoonet"))       <2>
             .negativeBoost(0.2f);                   <3>
 
-<1> 提升文档的查询
-<2> 降级文档的查询
-<3> negative boost
+#. 提升文档的查询
+#. 降级文档的查询
+#. negative boost
 
 
 ****************************************
@@ -515,9 +515,9 @@ Boosting Query
                     .must(rangeQuery("obj1.count").gt(5)),
             ScoreMode.Avg);                                     <3>
 
-<1> 嵌套文档路径
-<2> 你的查询. 查询中引用的任何字段都必须使用完整的路径(全限定的).
-<3> 评分模式可以是 `ScoreMode.Max`, `ScoreMode.Min`, `ScoreMode.Total`, `ScoreMode.Avg` 或 `ScoreMode.None`
+#. 嵌套文档路径
+#. 你的查询. 查询中引用的任何字段都必须使用完整的路径(全限定的).
+#. 评分模式可以是 `ScoreMode.Max`, `ScoreMode.Min`, `ScoreMode.Total`, `ScoreMode.Avg` 或 `ScoreMode.None`
 
 
 Has Child查询
@@ -542,9 +542,9 @@ Has Child查询
             termQuery("tag","something"),       <2>
             ScoreMode.None);                    <3>
 
-<1> 要查询的子类型
-<2> 查询
-<3> 评分模式可以是 `ScoreMode.Avg`, `ScoreMode.Max`, `ScoreMode.Min`, `ScoreMode.None` 或 `ScoreMode.Total`
+#. 要查询的子类型
+#. 查询
+#. 评分模式可以是 `ScoreMode.Avg`, `ScoreMode.Max`, `ScoreMode.Min`, `ScoreMode.None` 或 `ScoreMode.Total`
 
 
 Has Parent Query
@@ -569,9 +569,9 @@ Has Parent Query
         termQuery("tag","something"),       <2>
         false);                             <3>
 
-<1> 要查询的父类型
-<2> 查询
-<3> whether the score from the parent hit should propogate to the child hit
+#. 要查询的父类型
+#. 查询
+#. whether the score from the parent hit should propogate to the child hit
 
 
 ****************************************
@@ -627,8 +627,8 @@ Elasticsearch 支持两种类型的地理数据:支持 lat/lon 对的 `geo_point
         </exclusions>
     </dependency>
 
-<1> 在 `Maven 中央仓库 <http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.locationtech.spatial4j%22%20AND%20a%3A%22spatial4j%22>`_ 中检查更新
-<2> 在 `Maven 中央仓库 <http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.vividsolutions%22%20AND%20a%3A%22jts%22>`_ 中检查更新
+#. 在 `Maven 中央仓库 <http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.locationtech.spatial4j%22%20AND%20a%3A%22spatial4j%22>`_ 中检查更新
+#. 在 `Maven 中央仓库 <http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.vividsolutions%22%20AND%20a%3A%22jts%22>`_ 中检查更新
 
 .. code-block:: java
 
@@ -650,9 +650,9 @@ Elasticsearch 支持两种类型的地理数据:支持 lat/lon 对的 `geo_point
                 .build()));
     qb.relation(ShapeRelation.WITHIN);                  <3>
 
-<1> 字段
-<2> 形状
-<3> relation 可以是 `ShapeRelation.CONTAINS`, `ShapeRelation.WITHIN`, `ShapeRelation.INTERSECTS` 或 `ShapeRelation.DISJOINT`
+#. 字段
+#. 形状
+#. relation 可以是 `ShapeRelation.CONTAINS`, `ShapeRelation.WITHIN`, `ShapeRelation.INTERSECTS` 或 `ShapeRelation.DISJOINT`
 
 .. code-block:: java
 
@@ -665,12 +665,12 @@ Elasticsearch 支持两种类型的地理数据:支持 lat/lon 对的 `geo_point
         .indexedShapeIndex("shapes")                    <5>
         .indexedShapePath("location");                  <6>
 
-<1> 字段
-<2> The ID of the document that containing the pre-indexed shape.
-<3> Index type where the pre-indexed shape is.
-<4> relation
-<5> Name of the index where the pre-indexed shape is. Defaults to 'shapes'.
-<6> The field specified as path containing the pre-indexed shape. Defaults to 'shape'.
+#. 字段
+#. The ID of the document that containing the pre-indexed shape.
+#. Index type where the pre-indexed shape is.
+#. relation
+#. Name of the index where the pre-indexed shape is. Defaults to 'shapes'.
+#. The field specified as path containing the pre-indexed shape. Defaults to 'shape'.
 
 
 Geo Bounding Box Query
@@ -684,9 +684,9 @@ Geo Bounding Box Query
         .setCorners(40.73, -74.1,                         <2>
                     40.717, -73.99);                      <3>
 
-<1> 字段
-<2> 边界框顶部左边点
-<3> 边界框底部右边点
+#. 字段
+#. 边界框顶部左边点
+#. 边界框底部右边点
 
 
 地理距离查询
@@ -700,9 +700,9 @@ Geo Bounding Box Query
         .point(40, -70)                                 <2>
         .distance(200, DistanceUnit.KILOMETERS);        <3>
 
-<1> 字段
-<2> 中心点
-<3> 到中心点的距离
+#. 字段
+#. 中心点
+#. 到中心点的距离
 
 
 地理多变形查询
@@ -719,8 +719,8 @@ Geo Bounding Box Query
 
     geoPolygonQuery("pin.location", points);               <2>
 
-<1> 添加文档应落入的多边形的点
-<2> 使用字段和点初始化查询
+#. 添加文档应落入的多边形的点
+#. 使用字段和点初始化查询
 
 
 ****************************************
@@ -757,10 +757,10 @@ More Like This Query (mlt)
         .minTermFreq(1)                                            <3>
         .maxQueryTerms(12);                                        <4>
 
-<1> 字段
-<2> 文本
-<3> 忽略阈值
-<4> 生成的查询中词条的最大数量
+#. 字段
+#. 文本
+#. 忽略阈值
+#. 生成的查询中词条的最大数量
 
 脚本查询
 ========================================
@@ -773,7 +773,7 @@ More Like This Query (mlt)
             new Script("doc['num1'].value > 1")     <1>
     );
 
-<1> 内联脚本
+#. 内联脚本
 
 
 如果你在每个数据节点上都存储了一个名为 `myscript.painless` 的脚本, 脚本内容如下:
@@ -794,10 +794,10 @@ More Like This Query (mlt)
             "myscript",                                         <3>
             singletonMap("param1", 5)));                        <4>
 
-<1> 脚本类型: `ScriptType.FILE`, `ScriptType.INLINE` 或 `ScriptType.INDEXED`
-<2> 脚本引擎
-<3> 脚本名称
-<4> 参数是 `<String, Object>` 类型的 `Map`
+#. 脚本类型: `ScriptType.FILE`, `ScriptType.INLINE` 或 `ScriptType.INDEXED`
+#. 脚本引擎
+#. 脚本名称
+#. 参数是 `<String, Object>` 类型的 `Map`
 
 
 Percolate Query
@@ -913,8 +913,8 @@ Span Term Query
             "user",                                     <1>
             "kimchy");                                  <2>
 
-<1> field
-<2> value
+#. 字段
+#. 值
 
 
 Span Multi Term Query
@@ -927,7 +927,7 @@ Span Multi Term Query
     spanMultiTermQueryBuilder(
             prefixQuery("user", "ki"));                   <1>
 
-<1> 可以是任何继承了 `MultiTermQueryBuilder` 类的生成器。例如: `FuzzyQueryBuilder`, `PrefixQueryBuilder`, `RangeQueryBuilder`, `RegexpQueryBuilder` 或者 `WildcardQueryBuilder`.
+#. 可以是任何继承了 `MultiTermQueryBuilder` 类的生成器。例如: `FuzzyQueryBuilder`, `PrefixQueryBuilder`, `RangeQueryBuilder`, `RegexpQueryBuilder` 或者 `WildcardQueryBuilder`.
 
 
 Span First Query
@@ -942,8 +942,8 @@ Span First Query
             3                                           <2>
     );
 
-<1> 查询
-<2> 最大结束位置
+#. 查询
+#. 最大结束位置
 
 
 Span Near Query
@@ -960,11 +960,11 @@ Span Near Query
                 .addClause(spanTermQuery("field","value3")) <4>
                 .inOrder(false);                            <5>
 
-<1> span term queries
-<3>
-<4>
-<2> slop factor: the maximum number of intervening unmatched positions
-<5> whether matches are required to be in-order
+#. span term queries
+#.
+#.
+#. slop factor: the maximum number of intervening unmatched positions
+#. whether matches are required to be in-order
 
 
 Span Or Query
@@ -978,9 +978,9 @@ Span Or Query
         .addClause(spanTermQuery("field","value2"))    <2>
         .addClause(spanTermQuery("field","value3"));   <3>
 
-<1> span term queries
-<2>
-<3>
+#. span term queries
+#.
+#.
 
 Span Not Query
 ========================================
@@ -993,8 +993,8 @@ Span Not Query
             spanTermQuery("field","value1"),   <1>
             spanTermQuery("field","value2"));  <2>
 
-<1> 匹配结果被过滤的span query
-<2> span query whose matches must not overlap those returned
+#. 匹配结果被过滤的span query
+#. span query whose matches must not overlap those returned
 
 
 Span Containing Query
@@ -1010,8 +1010,8 @@ Span Containing Query
                 .inOrder(true),
             spanTermQuery("field1","foo"));                 <2>
 
-<1> `big` 部分
-<2> `little` 部分
+#. `big` 部分
+#. `little` 部分
 
 
 Span Within Query
@@ -1027,5 +1027,5 @@ Span Within Query
                 .inOrder(true),
             spanTermQuery("field1", "foo"));                  <2>
 
-<1> `big` part
-<2> `little` part
+#. `big` 部分
+#. `little` 部分

@@ -213,10 +213,11 @@ Elasticsearch 提供了内置的帮助类来生成 JSON 内容。
 
     long deleted = response.getDeleted();                       <4>
 
-<1> 查询
-<2> 索引
-<3> 执行操作
-<4> 删除的文档数量
+
+#. 查询
+#. 索引
+#. 执行操作
+#. 删除的文档数量
 
 因为它是一个耗时比较长的操作, 所以如果你想要异步执行, 你可以调用 `execute` 方法来替代 `get` 方法并提供一个像下面这样的监听器:
 
@@ -236,11 +237,10 @@ Elasticsearch 提供了内置的帮助类来生成 JSON 内容。
             }
         });
 
-
-<1> 查询
-<2> 索引
-<3> 监听器
-<4> 删除的文档数量
+#. 查询
+#. 索引
+#. 监听器
+#. 删除的文档数量
 
 
 .. _update_api:
@@ -278,8 +278,8 @@ Elasticsearch 提供了内置的帮助类来生成 JSON 内容。
                 .endObject())
             .get();
 
-<1> 你的脚本. 它也可以是一个本地存储的脚本名称。在这种情况下, 你需要使用 `ScriptType.FILE`。
-<2> 将要合并到现有文档的一个文档。
+#. 你的脚本. 它也可以是一个本地存储的脚本名称。在这种情况下, 你需要使用 `ScriptType.FILE`。
+#. 将要合并到现有文档的一个文档。
 
 请注意, 你不能同时提供 `script` 和 `doc`.
 
@@ -331,7 +331,7 @@ Elasticsearch 还支持更新插入。如果文档不存在, `upsert` 元素将�
             .upsert(indexRequest);              <1>
     client.update(updateRequest).get();
 
-<1> 如果文档不存在, `indexRequest` 中的文档将会被添加进来
+#. 如果文档不存在, `indexRequest` 中的文档将会被添加进来
 
 如果文档 `index/type/1` 已经存在, 那么在该操作之后我们将会得到一个像下面这样的文档:
 
@@ -377,12 +377,12 @@ Multi Get API 允许用户根据文档的 `index`, `type` 以及 `id` 来获取�
         }
     }
 
-<1> 根据单个文档 ID 进行查询
-<2> 对同样的索引/类型根据文档 ID 列表进行查询
-<3> 还可以从另一个索引上查询
-<4> 遍历结果集
-<5> 检查文档是否存在
-<6> 访问 `_source` 字段
+#. 根据单个文档 ID 进行查询
+#. 对同样的索引/类型根据文档 ID 列表进行查询
+#. 还可以从另一个索引上查询
+#. 遍历结果集
+#. 检查文档是否存在
+#. 访问 `_source` 字段
 
 更多有关 Multi Get 操作的信息, 请查看 REST `multi get <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/docs-multi-get.html>`_ 文档.
 
@@ -469,15 +469,15 @@ Bulk API 允许用户在单个请求中索引和删除多个文档。下面是�
                 BackoffPolicy.exponentialBackoff(TimeValue.timeValueMillis(100), 3)) <9>
             .build();
 
-<1> 添加 Elasticsearch 客户端
-<2> 该方法在批量操作执行前调用。例如, 你可以使用 `request.numberOfActions()` 方法查看 numberOfActions
-<3> 该方法在批量操作执行后调用。例如, 你可以使用 `response.hasFailures()` 方法检查是否有失败的请求
-<4> 该方法在批量失败并抛出 `Throwable` 时调用
-<5> 每 10 000 个请求执行一次批量操作
-<6> 每 5mb 刷新一次批量操作
-<7> 不管请求数量多少, 每 5s 刷新一次批量操作
-<8> 设置并发请求数量。值为 0 的话意味着一次只允许执行一个请求。值为1的话意味着在累积新的批量请求时值允许执行1个并发请求。
-<9> 设置自定义退避策略, 该策略最初将等待100毫秒, 按指数增加并且最多重试三次。当一个或多个批量项目请求因为 `EsRejectedExecutionException` 异常而失败, 这通常意味着没有足够的计算资源来处理这个请求, 一般会尝试重试。要禁用退避, 可以传递 `BackoffPolicy.noBackoff()`。
+#. 添加 Elasticsearch 客户端
+#. 该方法在批量操作执行前调用。例如, 你可以使用 `request.numberOfActions()` 方法查看 numberOfActions
+#. 该方法在批量操作执行后调用。例如, 你可以使用 `response.hasFailures()` 方法检查是否有失败的请求
+#. 该方法在批量失败并抛出 `Throwable` 时调用
+#. 每 10 000 个请求执行一次批量操作
+#. 每 5mb 刷新一次批量操作
+#. 不管请求数量多少, 每 5s 刷新一次批量操作
+#. 设置并发请求数量。值为 0 的话意味着一次只允许执行一个请求。值为1的话意味着在累积新的批量请求时值允许执行1个并发请求。
+#. 设置自定义退避策略, 该策略最初将等待100毫秒, 按指数增加并且最多重试三次。当一个或多个批量项目请求因为 `EsRejectedExecutionException` 异常而失败, 这通常意味着没有足够的计算资源来处理这个请求, 一般会尝试重试。要禁用退避, 可以传递 `BackoffPolicy.noBackoff()`。
 
 默认情况下, `BulkProcessor` 会做以下事情:
 
