@@ -12,9 +12,9 @@ Elasticsearch 以类似REST`查询DSL <https://www.elastic.co/guide/en/elasticse
 
     import static org.elasticsearch.index.query.QueryBuilders.*;
 
-请注意,  you can easily print (aka debug) JSON generated queries using `toString()` method on `QueryBuilder` object.
+请注意, 你可以在 `QueryBuilder` 对象上使用 `toString()` 方法轻松地打印(即 debug)出生成的JSON查询。
 
-接着 `QueryBuilder` 就可以用于任何接受查询的API  can then be used with any API that accepts a query, such as `count` and `search`.
+接着 `QueryBuilder` 就可以用于任何接受像 `count` 和 `search` 查询的API。
 
 
 ****************************************
@@ -28,31 +28,33 @@ Match All Query
     matchAllQuery();
 
 
+.. _full_text_query:
+
 ****************************************
 全文查询
 ****************************************
 
 高级的全文查询通常用于在像电子邮件正文这样的全文本字段上运行全文查询。他们了解如何分析被查询的字段, 并在执行之前将每个字段的 `analyzer`（或 `search_analyzer`）应用于查询字符串。
 
-该组中的查询有:
+该分组中的查询有:
 
-<<java-query-dsl-match-query,`match` 查询>>::
+`match` 查询
 
     执行全文查询的标准查询, 包括模糊匹配以及短语或邻近查询。
 
-<<java-query-dsl-multi-match-query,`multi_match` 查询>>::
+`multi_match` 查询
 
-    `match` 查询的多字段版本.
+    `match` 查询的多字段版本。
 
-<<java-query-dsl-common-terms-query,`common_terms` 查询>>::
+`common_terms` 查询
 
     一个更专门的查询, 它偏好不常见的单词。
 
-<<java-query-dsl-query-string-query,`query_string` 查询>>::
+`query_string` 查询
 
     支持紧凑的 Lucene 查询字符串语法, 允许你在单个查询字符串中指定 AND|OR|NOT 条件和多字段搜索。仅限专家用户。
 
-<<java-query-dsl-simple-query-string-query,`simple_query_string`>>::
+`simple_query_string`
 
     一个更加简单, 更加健壮版本的 `query_string` 语法, 适合直接暴露给用户。
 
@@ -64,10 +66,9 @@ Match All Query
 
 .. code-block:: java
 
-    QueryBuilder qb = matchQuery(
-        "name",                  <1>
-        "kimchy elasticsearch"   <2>
-    );
+    matchQuery(
+            "name",                    <1>
+            "kimchy elasticsearch");   <2>
 
 <1> 字段
 <2> 文本
@@ -80,10 +81,10 @@ Multi Match Query
 
 .. code-block:: java
 
-    QueryBuilder qb = multiMatchQuery(
-        "kimchy elasticsearch", <1>
-        "user", "message"       <2>
-    );
+    multiMatchQuery(
+            "kimchy elasticsearch",           <1>
+            "user", "message");               <2>
+
 
 <1> 文本
 <2> 字段
@@ -96,8 +97,8 @@ Multi Match Query
 
 .. code-block:: java
 
-    QueryBuilder qb = commonTermsQuery("name",    <1>
-                                       "kimchy"); <2>
+    commonTermsQuery("name",        <1>
+                     "kimchy");     <2>
 
 <1> 字段
 <2> 值
@@ -109,9 +110,7 @@ Multi Match Query
 
 .. code-block:: java
 
-    QueryBuilder qb = queryStringQuery("+kimchy -elasticsearch");    <1>
-
-<1> 文本
+    queryStringQuery("+kimchy -elasticsearch");
 
 
 简单查询字符串查询
@@ -121,72 +120,64 @@ Multi Match Query
 
 .. code-block:: java
 
-    QueryBuilder qb = simpleQueryStringQuery("+kimchy -elasticsearch");    <1>
-
-<1> 文本
+    simpleQueryStringQuery("+kimchy -elasticsearch");
 
 
 ****************************************
 词条级别的查询
 ****************************************
 
-While the <<java-full-text-queries,full text queries>> will analyze the query
-string before executing, the _term-level queries operate on the exact terms
-that are stored in the inverted index.
+:ref:`full_text_query` 在执行查询前会对查询字符串进行分词, 而 term-level 查询操作于存储在倒排索引中的每个词条上。
 
-这些查询通常用于数字、日期以及枚举之类的结构化的数据, 而不是全文本字段. Alternatively, they allow you to craft
+这些查询通常用于数字、日期以及枚举之类的结构化的数据, 而不是全文本字段。Alternatively, they allow you to craft
 low-level queries, foregoing the analysis process.
 
-The queries in this group are:
+该分组中的查询有:
 
-<<java-query-dsl-term-query,`term`查询>>::
+`term` 查询
 
-    查询特定字段中准确包含特定词条的文档
+    查询指定字段中精确包含指定词条的文档
 
-<<java-query-dsl-terms-query,`terms`查询>>::
+`terms` 查询
 
     Find documents which contain any of the exact terms specified in the field
     specified.
 
-<<java-query-dsl-range-query,`range`查询>>::
+`range` 查询
 
-    Find documents where the field specified contains values (dates, numbers,
-    or strings) in the range specified.
+    查询指定字段中包含指定范围值(日期、数字或字符串)的文档。
 
-<<java-query-dsl-exists-query,`exists`查询>>::
+`exists` 查询
 
-    Find documents where the field specified contains any non-null value.
+    查询指定字段中包含任意非空值的文档。
 
-<<java-query-dsl-prefix-query,`prefix`查询>>::
+`prefix` 查询
 
     Find documents where the field specified contains terms which being with
     the exact prefix specified.
 
-<<java-query-dsl-wildcard-query,`wildcard`查询>>::
+`wildcard` 查询
 
     Find documents where the field specified contains terms which match the
     pattern specified, where the pattern supports single character wildcards
     (`?`) and multi-character wildcards (`*`)
 
-<<java-query-dsl-regexp-query,`regexp`查询>>::
+`regexp` 查询
 
-    Find documents where the field specified contains terms which match the
-    regular expression specified.
+    查询指定字段中包含匹配指定正则表达式的词条的文档。
 
-<<java-query-dsl-fuzzy-query,`fuzzy`查询>>::
+`fuzzy` 查询
 
     Find documents where the field specified contains terms which are fuzzily
-    similar to the specified term.  Fuzziness is measured as a
-    http://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance[莱文斯坦编辑距离]
-    of 1 or 2.
+    similar to the specified term.  Fuzziness is measured as a `莱文斯坦编辑距离 <http://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance>`_ of 1 or 2.
 
-<<java-query-dsl-type-query,`type` query>>::
+`type` 查询
 
-    查询指定类型的文档.
+    查询指定类型的文档。
 
-<<java-query-dsl-ids-query,`ids` query>>::
+`ids` 查询
 
-    查询指定类型和文档ID列表的文档.
+    查询指定类型和文档ID列表的文档。
 
 
 词条查询
@@ -196,10 +187,9 @@ The queries in this group are:
 
 .. code-block:: java
 
-    QueryBuilder qb = termQuery(
-        "name",    <1>
-        "kimchy"   <2>
-    );
+    termQuery(
+            "name",      <1>
+            "kimchy");   <2>
 
 <1> 字段
 <2> 文本
@@ -212,8 +202,8 @@ The queries in this group are:
 
 .. code-block:: java
 
-    QueryBuilder qb = termsQuery("tags",    <1>
-        "blue", "pill");                    <2>
+    termsQuery("tags",                          <1>
+            "blue", "pill");                    <2>
 
 <1> 字段
 <2> 值
@@ -226,7 +216,7 @@ The queries in this group are:
 
 .. code-block:: java
 
-    QueryBuilder qb = rangeQuery("price")   <1>
+    rangeQuery("price")                     <1>
         .from(5)                            <2>
         .to(10)                             <3>
         .includeLower(true)                 <4>
@@ -235,19 +225,19 @@ The queries in this group are:
 <1> 字段
 <2> from
 <3> to
-<4> include lower value means that `from` is `gt` when `false` or `gte` when `true`
-<5> include upper value means that `to` is `lt` when `false` or `lte` when `true`
+<4> 包含较低值意味着为 `false` 时 `from` 是 `gt` 而为 `true' 时 `from` 是 `gte`。
+<5> 包含较高值意味着为 `false` 时 `to` 是 `lt` 而为 `false` 时 `to` 是 `lte`。
 
 .. code-block:: java
 
     // A simplified form using gte, gt, lt or lte
-    QueryBuilder qb = rangeQuery("age")   <1>
+    rangeQuery("age")                     <1>
         .gte("10")                        <2>
         .lt("20");                        <3>
 
 <1> 字段
-<2> set `from` to 10 and `includeLower` to `true`
-<3> set `to` to 20 and `includeUpper` to `false`
+<2> 设置 `from` 值为 10,  `includeLower` 值为 `true`
+<3> 设置 `to` 值为 20, `includeUpper` 值为 `false`
 
 
 存在查询
@@ -257,7 +247,7 @@ The queries in this group are:
 
 .. code-block:: java
 
-    QueryBuilder qb = existsQuery("name");       <1>
+    existsQuery("name");       <1>
 
 <1> 字段
 
@@ -269,10 +259,10 @@ The queries in this group are:
 
 .. code-block:: java
 
-    QueryBuilder qb = prefixQuery(
-        "brand",    <1>
-        "heine"     <2>
-    );
+    prefixQuery(
+            "brand",        <1>
+            "heine");       <2>
+
 
 <1> 字段
 <2> 前缀
@@ -285,7 +275,12 @@ The queries in this group are:
 
 .. code-block:: java
 
-    QueryBuilder qb = wildcardQuery("user", "k?mc*");
+    wildcardQuery(
+            "user",           <1>
+            "k?mch*");        <2>
+
+<1> 字段
+<2> 通配符表达式
 
 
 正则表达式查询
@@ -295,9 +290,9 @@ The queries in this group are:
 
 .. code-block:: java
 
-    QueryBuilder qb = regexpQuery(
-        "name.first",        <1>
-        "s.*y");             <2>
+    regexpQuery(
+            "name.first",        <1>
+            "s.*y");             <2>
 
 <1> 字段
 <2> 正则表达式
@@ -310,10 +305,10 @@ The queries in this group are:
 
 .. code-block:: java
 
-    QueryBuilder qb = fuzzyQuery(
-        "name",     <1>
-        "kimzhy"    <2>
-    );
+    fuzzyQuery(
+            "name",       <1>
+            "kimzhy");    <2>
+
 
 <1> 字段
 <2> 文本
@@ -326,12 +321,12 @@ The queries in this group are:
 
 .. code-block:: java
 
-    QueryBuilder qb = typeQuery("my_type"); <1>
+    typeQuery("my_type");   <1>
 
 <1> 类型名称
 
 
-文档 Id 查询
+文档ID查询
 ========================================
 
 
@@ -339,11 +334,11 @@ The queries in this group are:
 
 .. code-block:: java
 
-    QueryBuilder qb = idsQuery("my_type", "type2")
-        .addIds("1", "4", "100");
+    idsQuery("my_type", "type2")
+            .addIds("1", "4", "100");
 
-    QueryBuilder qb = idsQuery() <1>
-        .addIds("1", "4", "100");
+    idsQuery()                                  <1>
+            .addIds("1", "4", "100");
 
 <1> 类型是可选的
 
@@ -355,41 +350,41 @@ The queries in this group are:
 Compound queries wrap other compound or leaf queries, either to combine their results and scores, to change their behaviour, or to switch from query to
 filter context.
 
-该组中的查询有:
+该分组中的查询有:
 
-<<java-query-dsl-constant-score-query,`constant_score` 查询>>::
+`constant_score` 查询
 
 A query which wraps another query, but executes it in filter context.  All
 matching documents are given the same ``constant'' `_score`.
 
-<<java-query-dsl-bool-query,`bool` 查询>>::
+`bool` 查询
 
 The default query for combining multiple leaf or compound query clauses, as
 `must`, `should`, `must_not`, or `filter` clauses.  The `must` and `should`
 clauses have their scores combined -- the more matching clauses, the better --
 while the `must_not` and `filter` clauses are executed in filter context.
 
-<<java-query-dsl-dis-max-query,`dis_max` 查询>>::
+`dis_max` 查询
 
 A query which accepts multiple queries, and returns any documents which match
 any of the query clauses.  While the `bool` query combines the scores from all
 matching queries, the `dis_max` query uses the score of the single best-
 matching query clause.
 
-<<java-query-dsl-function-score-query,`function_score` 查询>>::
+`function_score` 查询
 
 Modify the scores returned by the main query with functions to take into
 account factors like popularity, recency, distance, or custom algorithms
 implemented with scripting.
 
-<<java-query-dsl-boosting-query,`boosting` 查询>>::
+`boosting` 查询
 
 Return documents which match a `positive` query, but reduce the score of
 documents which also match a `negative` query.
 
-<<java-query-dsl-indices-query,`indices` 查询>>::
+`indices` 查询
 
-对指定的索引执行一个查询，为其他索引执行另一个查询。
+    对指定的索引执行一个查询，为其他索引执行另一个查询。
 
 
 Constant Score Query
@@ -399,9 +394,8 @@ Constant Score Query
 
 .. code-block:: java
 
-    QueryBuilder qb = constantScoreQuery(
-            termQuery("name","kimchy")      <1>
-        )
+    constantScoreQuery(
+            termQuery("name","kimchy"))     <1>
         .boost(2.0f);                       <2>
 
 <1> 查询
@@ -415,17 +409,18 @@ Constant Score Query
 
 .. code-block:: java
 
-    QueryBuilder qb = boolQuery()
-        .must(termQuery("content", "test1"))    <1>
-        .must(termQuery("content", "test4"))    <1>
-        .mustNot(termQuery("content", "test2")) <2>
-        .should(termQuery("content", "test3"))  <3>
-        .filter(termQuery("content", "test5")); <4>
+    boolQuery()
+            .must(termQuery("content", "test1"))    <1>
+            .must(termQuery("content", "test4"))    <2>
+            .mustNot(termQuery("content", "test2")) <3>
+            .should(termQuery("content", "test3"))  <4>
+            .filter(termQuery("content", "test5")); <5>
 
 <1> must 查询
-<2> must not 查询
-<3> should 查询
-<4> 必须出现在匹配文档中但不对评分有贡献的查询。
+<2>
+<3> must not 查询
+<4> should 查询
+<5> 必须出现在匹配文档中但不对评分有贡献的查询。
 
 
 Dis Max Query
@@ -435,11 +430,11 @@ Dis Max Query
 
 .. code-block:: java
 
-    QueryBuilder qb = disMaxQuery()
-        .add(termQuery("name", "kimchy"))        <1>
-        .add(termQuery("name", "elasticsearch")) <2>
-        .boost(1.2f)                             <3>
-        .tieBreaker(0.7f);                       <4>
+    disMaxQuery()
+            .add(termQuery("name", "kimchy"))               <1>
+            .add(termQuery("name", "elasticsearch"))        <2>
+            .boost(1.2f)                                    <3>
+            .tieBreaker(0.7f);                              <4>
 
 <1> 添加查询
 <2> 添加查询
@@ -463,11 +458,11 @@ Function Score Query
     FilterFunctionBuilder[] functions = {
             new FunctionScoreQueryBuilder.FilterFunctionBuilder(
                     matchQuery("name", "kimchy"),                 <1>
-                    randomFunction("ABCDEF")),                    <2>
+                    randomFunction()),                            <2>
             new FunctionScoreQueryBuilder.FilterFunctionBuilder(
                     exponentialDecayFunction("age", 0L, 1L))      <3>
     };
-    QueryBuilder qb = QueryBuilders.functionScoreQuery(functions);
+    functionScoreQuery(functions);
 
 <1> 基于查询添加第一个函数
 <2> 基于给定的种子随机化评分
@@ -481,46 +476,14 @@ Boosting Query
 
 .. code-block:: java
 
-    QueryBuilder qb = boostingQuery(
-            termQuery("name","kimchy"),    <1>
-            termQuery("name","dadoonet"))  <2>
-        .negativeBoost(0.2f);              <3>
+    boostingQuery(
+                termQuery("name","kimchy"),         <1>
+                termQuery("name","dadoonet"))       <2>
+            .negativeBoost(0.2f);                   <3>
 
 <1> 提升文档的查询
 <2> 降级文档的查询
 <3> negative boost
-
-
-索引查询
-========================================
-
-过时[5.0.0, Search on the '_index' field instead]
-
-参见 `索引查询 <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/query-dsl-indices-query.html>`_ 。
-
-.. code-block:: java
-
-    // Using another query when no match for the main one
-    QueryBuilder qb = indicesQuery(
-            termQuery("tag", "wow"),             <1>
-            "index1", "index2"                   <2>
-        ).noMatchQuery(termQuery("tag", "kow")); <3>
-
-<1> 在选择的索引上执行的查询
-<2> 选择的索引
-<3> 非匹配索引上执行的查询
-
-.. code-block:: java
-
-    // Using all (match all) or none (match no documents)
-    QueryBuilder qb = indicesQuery(
-            termQuery("tag", "wow"),            <1>
-            "index1", "index2"                  <2>
-        ).noMatchQuery("all");                  <3>
-
-<1> 在选择的索引上执行的查询
-<2> 选择的索引
-<3> `none`(to match no documents), and `all` (匹配所有文档). 默认值是 `all`。
 
 
 ****************************************
@@ -529,13 +492,13 @@ Boosting Query
 
 在像 Elasticsearch 这样的分布式系统中执行完全 SQL 风格的连接查询, 代价是非常昂贵的。相反, Elasticsearch 提供了两种形式的连接, 它们主要设计用于水平扩展。
 
-<<java-query-dsl-nested-query,嵌套查询>>::
+嵌套查询
 
-文档可能包含 `nested` 类型的字段。这些字段用于索引对象数组, 其中每个对象可以作为一个独立的文本进行查询(使用嵌套查询)。
+    文档可能包含 `nested` 类型的字段。这些字段用于索引对象数组, 其中每个对象可以作为一个独立的文本进行查询(使用嵌套查询)。
 
-<<java-query-dsl-has-child-query,`has_child`>> 和 <<java-query-dsl-has-parent-query,`has_parent`>> 查询::
+`has_child` 和 `has_parent`
 
-单个索引中的两种类型的文档之间可以存在父子关系。因为子文档匹配特定的查询, `has_child` 查询会返回父文档, 而因为父文档匹配特定的查询, `has_parent` 查询会返回子文档。
+    单个索引中的两种类型的文档之间可以存在父子关系。因为子文档匹配特定的查询, `has_child` 查询会返回父文档, 而因为父文档匹配特定的查询, `has_parent` 查询会返回子文档。
 
 
 嵌套查询
@@ -545,31 +508,39 @@ Boosting Query
 
 .. code-block:: java
 
-    QueryBuilder qb = nestedQuery(
-            "obj1",                       <1>
-            boolQuery()                   <2>
+    nestedQuery(
+            "obj1",                                             <1>
+            boolQuery()                                         <2>
                     .must(matchQuery("obj1.name", "blue"))
                     .must(rangeQuery("obj1.count").gt(5)),
-            ScoreMode.Avg                 <3>
-        );
+            ScoreMode.Avg);                                     <3>
 
 <1> 嵌套文档路径
 <2> 你的查询. 查询中引用的任何字段都必须使用完整的路径(全限定的).
 <3> 评分模式可以是 `ScoreMode.Max`, `ScoreMode.Min`, `ScoreMode.Total`, `ScoreMode.Avg` 或 `ScoreMode.None`
 
 
-Has Child Query
+Has Child查询
 ========================================
 
 参见 `Has Child Query <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/query-dsl-has-child-query.html>`_ 。
 
+当使用 has_child 查询时, 使用 PreBuiltTransportClient 而不是常规客户端是很重要的:
+
 .. code-block:: java
 
-    QueryBuilder qb = hasChildQuery(
-        "blog_tag",                     <1>
-        termQuery("tag","something"),   <2>
-        ScoreMode.Avg                   <3>
-    );
+    Settings settings = Settings.builder().put("cluster.name", "elasticsearch").build();
+    TransportClient client = new PreBuiltTransportClient(settings);
+    client.addTransportAddress(new InetSocketTransportAddress(new InetSocketAddress(InetAddresses.forString("127.0.0.1"), 9300)));
+
+否则的话 parent-join 模块不会被加载并且传输客户端无法使用 has_child 查询。
+
+.. code-block:: java
+
+    JoinQueryBuilders.hasChildQuery(
+            "blog_tag",                         <1>
+            termQuery("tag","something"),       <2>
+            ScoreMode.None);                    <3>
 
 <1> 要查询的子类型
 <2> 查询
@@ -581,13 +552,22 @@ Has Parent Query
 
 参见 `Has Parent Query <https://www.elastic.co/guide/en/elasticsearch/reference/6.2/query-dsl-has-parent-query.html>`_ 。
 
+当使用 has_parent 查询时, 使用 PreBuiltTransportClient 而不是常规客户端是很重要的:
+
 .. code-block:: java
 
-    QueryBuilder qb = hasParentQuery(
-        "blog",                         <1>
-        termQuery("tag","something"),   <2>
-        false                           <3>
-    );
+    Settings settings = Settings.builder().put("cluster.name", "elasticsearch").build();
+    TransportClient client = new PreBuiltTransportClient(settings);
+    client.addTransportAddress(new InetSocketTransportAddress(new InetSocketAddress(InetAddresses.forString("127.0.0.1"), 9300)));
+
+否则的话 parent-join 模块不会被加载并且传输客户端无法使用 has_parent 查询。
+
+.. code-block:: java
+
+    JoinQueryBuilders.hasParentQuery(
+        "blog",                             <1>
+        termQuery("tag","something"),       <2>
+        false);                             <3>
 
 <1> 要查询的父类型
 <2> 查询
@@ -598,29 +578,26 @@ Has Parent Query
 地理查询
 ****************************************
 
-Elasticsearch 支持两种类型的地理数据:
-`geo_point` fields which support lat/lon pairs, and
-`geo_shape` fields, which support points, lines, circles, polygons, multi-polygons etc.
+Elasticsearch 支持两种类型的地理数据:支持 lat/lon 对的 `geo_point` 字段和支持点、线、circles、多边形, multi-polygons等的 `geo_shape` 字段。
 
-该组中的查询有:
+该分组中的查询有:
 
-<<java-query-dsl-geo-shape-query,`geo_shape`>> query::
+`geo_shape` 查询
 
     Find document with geo-shapes which either intersect, are contained by, or
-    do not intersect with the specified geo-shape.
+    do not intersect with the specified geo-shape。
 
-<<java-query-dsl-geo-bounding-box-query,`geo_bounding_box`>> query::
+`geo_bounding_box` 查询
 
-    Finds documents with geo-points that fall into the specified rectangle.
+    Finds documents with geo-points that fall into the specified rectangle。
 
-<<java-query-dsl-geo-distance-query,`geo_distance`>> query::
+`geo_distance` 查询
 
-    Finds document with geo-points within the specified distance of a central
-    point.
+    Finds document with geo-points within the specified distance of a central point。
 
-<<java-query-dsl-geo-polygon-query,`geo_polygon`>> query::
+`geo_polygon` 查询
 
-    Find documents with geo-points within the specified polygon.
+    Find documents with geo-points within the specified polygon。
 
 
 地理形状查询
@@ -661,17 +638,17 @@ Elasticsearch 支持两种类型的地理数据:
 
 .. code-block:: java
 
-    List<Coordinate> points = new ArrayList<>();
-    points.add(new Coordinate(0, 0));
-    points.add(new Coordinate(0, 10));
-    points.add(new Coordinate(10, 10));
-    points.add(new Coordinate(10, 0));
-    points.add(new Coordinate(0, 0));
-
-    QueryBuilder qb = geoShapeQuery(
-            "pin.location",                         <1>
-            ShapeBuilders.newMultiPoint(points)     <2>
-            .relation(ShapeRelation.WITHIN);        <3>
+    GeoShapeQueryBuilder qb = geoShapeQuery(
+            "pin.location",                             <1>
+            ShapeBuilders.newMultiPoint(                <2>
+                    new CoordinatesBuilder()
+                .coordinate(0, 0)
+                .coordinate(0, 10)
+                .coordinate(10, 10)
+                .coordinate(10, 0)
+                .coordinate(0, 0)
+                .build()));
+    qb.relation(ShapeRelation.WITHIN);                  <3>
 
 <1> 字段
 <2> 形状
@@ -680,13 +657,13 @@ Elasticsearch 支持两种类型的地理数据:
 .. code-block:: java
 
     // Using pre-indexed shapes
-    QueryBuilder qb = geoShapeQuery(
-            "pin.location",                  <1>
-            "DEU",                           <2>
-            "countries")                     <3>
-            .relation(ShapeRelation.WITHIN)) <4>
-            .indexedShapeIndex("shapes")     <5>
-            .indexedShapePath("location");   <6>
+    GeoShapeQueryBuilder qb = geoShapeQuery(
+                "pin.location",                         <1>
+                "DEU",                                  <2>
+                "countries");                           <3>
+    qb.relation(ShapeRelation.WITHIN)                   <4>
+        .indexedShapeIndex("shapes")                    <5>
+        .indexedShapePath("location");                  <6>
 
 <1> 字段
 <2> The ID of the document that containing the pre-indexed shape.
@@ -703,7 +680,7 @@ Geo Bounding Box Query
 
 .. code-block:: java
 
-    QueryBuilder qb = geoBoundingBoxQuery("pin.location") <1>
+    geoBoundingBoxQuery("pin.location")                   <1>
         .setCorners(40.73, -74.1,                         <2>
                     40.717, -73.99);                      <3>
 
@@ -719,7 +696,7 @@ Geo Bounding Box Query
 
 .. code-block:: java
 
-    QueryBuilder qb = geoDistanceQuery("pin.location")  <1>
+    geoDistanceQuery("pin.location")  <1>
         .point(40, -70)                                 <2>
         .distance(200, DistanceUnit.KILOMETERS);        <3>
 
@@ -740,8 +717,7 @@ Geo Bounding Box Query
     points.add(new GeoPoint(30, -80));
     points.add(new GeoPoint(20, -90));
 
-    QueryBuilder qb =
-            geoPolygonQuery("pin.location", points);       <2>
+    geoPolygonQuery("pin.location", points);               <2>
 
 <1> 添加文档应落入的多边形的点
 <2> 使用字段和点初始化查询
@@ -753,19 +729,17 @@ Specialized queries
 
 This group contains queries which do not fit into the other groups:
 
-<<java-query-dsl-mlt-query,`more_like_this` 查询>>::
+`more_like_this` 查询
 
-This query finds documents which are similar to the specified text, document,
-or collection of documents.
+    This query finds documents which are similar to the specified text, document, or collection of documents.
 
-<<java-query-dsl-script-query,`script` 查询>>::
+`script` 查询
 
-This query allows a script to act as a filter.  Also see the
-<<java-query-dsl-function-score-query,`function_score` query>>.
+    This query allows a script to act as a filter.  Also see the <<java-query-dsl-function-score-query,`function_score` query>>.
 
-<<java-query-percolate-query,`percolate` 查询>>::
+`percolate` 查询
 
-This query finds percolator queries based on documents.
+    This query finds percolator queries based on documents.
 
 
 More Like This Query (mlt)
@@ -779,7 +753,7 @@ More Like This Query (mlt)
     String[] texts = {"text like this one"};                       <2>
     Item[] items = null;
 
-    QueryBuilder qb = moreLikeThisQuery(fields, texts, items)
+    moreLikeThisQuery(fields, texts, items)
         .minTermFreq(1)                                            <3>
         .maxQueryTerms(12);                                        <4>
 
@@ -795,8 +769,8 @@ More Like This Query (mlt)
 
 .. code-block:: java
 
-    QueryBuilder qb = scriptQuery(
-        new Script("doc['num1'].value > 1") <1>
+    scriptQuery(
+            new Script("doc['num1'].value > 1")     <1>
     );
 
 <1> 内联脚本
@@ -812,13 +786,13 @@ More Like This Query (mlt)
 
 .. code-block:: java
 
-    QueryBuilder qb = scriptQuery(
-        new Script(
-            ScriptType.FILE,                       <1>
-            "painless",                            <2>
-            "myscript",                            <3>
-            Collections.singletonMap("param1", 5)) <4>
-    );
+    Map<String, Object> parameters = new HashMap<>();
+    parameters.put("param1", 5);
+    scriptQuery(new Script(
+            ScriptType.STORED,                                  <1>
+            null,                                               <2>
+            "myscript",                                         <3>
+            singletonMap("param1", 5)));                        <4>
 
 <1> 脚本类型: `ScriptType.FILE`, `ScriptType.INLINE` 或 `ScriptType.INDEXED`
 <2> 脚本引擎
@@ -891,39 +865,39 @@ to implement very specific queries on legal documents or patents.
 
 Span queries cannot be mixed with non-span queries (with the exception of the `span_multi` query).
 
-该组中的查询有:
+该分组中的查询有:
 
-`span_term`查询
+`span_term` 查询
 
     The equivalent of the <<java-query-dsl-term-query,`term` query>> but for use with other span queries.
 
-`span_multi`查询
+`span_multi` 查询
 
     Wraps a <<java-query-dsl-term-query,`term`>>, <<java-query-dsl-range-query,`range`>>,
 <<java-query-dsl-prefix-query,`prefix`>>, <<java-query-dsl-wildcard-query,`wildcard`>>,
 <<java-query-dsl-regexp-query,`regexp`>>, or <<java-query-dsl-fuzzy-query,`fuzzy`>> query.
 
-`span_first`查询
+`span_first` 查询
 
     Accepts another span query whose matches must appear within the first N  positions of the field.
 
-`span_near`查询
+`span_near` 查询
 
     Accepts multiple span queries whose matches must be within the specified distance of each other, and possibly in the same order.
 
-`span_or`查询
+`span_or` 查询
 
     Combines multiple span queries -- returns documents which match any of the specified queries.
 
-`span_not`查询
+`span_not` 查询
 
-Wraps another span query, and excludes any documents which match that query.
+    Wraps another span query, and excludes any documents which match that query.
 
-`span_containing`查询
+`span_containing` 查询
 
     Accepts a list of span queries, but only returns those spans which also match a second span query.
 
-`span_within`查询
+`span_within` 查询
 
     The result from a single span query is returned as long is its span falls within the spans returned by a list of other span queries.
 
@@ -935,10 +909,9 @@ Span Term Query
 
 .. code-block:: java
 
-    QueryBuilder qb = spanTermQuery(
-        "user",                                     <1>
-        "kimchy"                                    <2>
-    );
+    spanTermQuery(
+            "user",                                     <1>
+            "kimchy");                                  <2>
 
 <1> field
 <2> value
@@ -951,9 +924,8 @@ Span Multi Term Query
 
 .. code-block:: java
 
-    QueryBuilder qb = spanMultiTermQueryBuilder(
-        prefixQuery("user", "ki")                   <1>
-    );
+    spanMultiTermQueryBuilder(
+            prefixQuery("user", "ki"));                   <1>
 
 <1> 可以是任何继承了 `MultiTermQueryBuilder` 类的生成器。例如: `FuzzyQueryBuilder`, `PrefixQueryBuilder`, `RangeQueryBuilder`, `RegexpQueryBuilder` 或者 `WildcardQueryBuilder`.
 
@@ -965,9 +937,9 @@ Span First Query
 
 .. code-block:: java
 
-    QueryBuilder qb = spanFirstQuery(
-        spanTermQuery("user", "kimchy"),            <1>
-        3                                           <2>
+    spanFirstQuery(
+            spanTermQuery("user", "kimchy"),            <1>
+            3                                           <2>
     );
 
 <1> 查询
@@ -981,16 +953,18 @@ Span Near Query
 
 .. code-block:: java
 
-    QueryBuilder qb = spanNearQuery(
-        spanTermQuery("field","value1"),            <1>
-        12)                                         <2>
-        .addClause(spanTermQuery("field","value2")) <1>
-        .addClause(spanTermQuery("field","value3")) <1>
-        .inOrder(false);                            <3>
+    spanNearQuery(
+            spanTermQuery("field","value1"),                <1>
+            12)                                             <2>
+                .addClause(spanTermQuery("field","value2")) <3>
+                .addClause(spanTermQuery("field","value3")) <4>
+                .inOrder(false);                            <5>
 
 <1> span term queries
+<3>
+<4>
 <2> slop factor: the maximum number of intervening unmatched positions
-<3> whether matches are required to be in-order
+<5> whether matches are required to be in-order
 
 
 Span Or Query
@@ -1000,13 +974,13 @@ Span Or Query
 
 .. code-block:: java
 
-    QueryBuilder qb = spanOrQuery(
-        spanTermQuery("field","value1"))               <1>
-        .addClause(spanTermQuery("field","value2"))    <1>
-        .addClause(spanTermQuery("field","value3"));   <1>
+    spanOrQuery(spanTermQuery("field","value1"))       <1>        <1>
+        .addClause(spanTermQuery("field","value2"))    <2>
+        .addClause(spanTermQuery("field","value3"));   <3>
 
 <1> span term queries
-
+<2>
+<3>
 
 Span Not Query
 ========================================
@@ -1015,11 +989,11 @@ Span Not Query
 
 .. code-block:: java
 
-    QueryBuilder qb = spanNotQuery(
-        spanTermQuery("field","value1"),   <1>
-        spanTermQuery("field","value2"));  <2>
+    spanNotQuery(
+            spanTermQuery("field","value1"),   <1>
+            spanTermQuery("field","value2"));  <2>
 
-<1> span query whose matches are filtered
+<1> 匹配结果被过滤的span query
 <2> span query whose matches must not overlap those returned
 
 
@@ -1030,11 +1004,11 @@ Span Containing Query
 
 .. code-block:: java
 
-    QueryBuilder qb = spanContainingQuery(
-        spanNearQuery(spanTermQuery("field1","bar"), 5) <1>
-              .addClause(spanTermQuery("field1","baz"))
-              .inOrder(true),
-        spanTermQuery("field1","foo"));                 <2>
+    spanContainingQuery(
+            spanNearQuery(spanTermQuery("field1","bar"), 5) <1>
+                .addClause(spanTermQuery("field1","baz"))
+                .inOrder(true),
+            spanTermQuery("field1","foo"));                 <2>
 
 <1> `big` 部分
 <2> `little` 部分
@@ -1047,11 +1021,11 @@ Span Within Query
 
 .. code-block:: java
 
-    QueryBuilder qb = spanWithinQuery(
-        spanNearQuery(spanTermQuery("field1", "bar"), 5) <1>
-            .addClause(spanTermQuery("field1", "baz"))
-            .inOrder(true),
-        spanTermQuery("field1", "foo"));                 <2>
+    spanWithinQuery(
+            spanNearQuery(spanTermQuery("field1", "bar"), 5)  <1>
+                .addClause(spanTermQuery("field1", "baz"))
+                .inOrder(true),
+            spanTermQuery("field1", "foo"));                  <2>
 
 <1> `big` part
 <2> `little` part
