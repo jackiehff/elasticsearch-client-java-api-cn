@@ -17,10 +17,9 @@ Elasticsearch 提供了一套完整的 Java API 来处理管理任务.
 索引管理
 ****************************************
 
-要通过 Java API 访问索引, 你需要调用 <<java-admin,`AdminClient`>> 对象的 `indices()` 方法:
+要通过 Java API 访问索引, 你需要调用 `AdminClient` 对象的 `indices()` 方法:
 
 .. code-block:: java
-
 
     IndicesAdminClient indicesAdminClient = client.admin().indices();
 
@@ -57,36 +56,36 @@ Elasticsearch 提供了一套完整的 Java API 来处理管理任务.
 Put Mapping
 ========================================
 
-PUT 映射 API 允许用户在创建索引时添加一个新的类型:
+PUT 映射 API 允许你在创建索引时添加一个新的类型:
 
 .. code-block:: java
 
-    client.admin().indices().prepareCreate("twitter")   <1>
-            .addMapping("tweet", "{\n" +                <2>
-                    "    \"tweet\": {\n" +
-                    "      \"properties\": {\n" +
-                    "        \"message\": {\n" +
-                    "          \"type\": \"string\"\n" +
-                    "        }\n" +
-                    "      }\n" +
-                    "    }\n" +
-                    "  }")
-            .get();
+    client.admin().indices().prepareCreate("twitter")    <1>
+        .addMapping("tweet", "{\n" +                     <2>
+                "    \"tweet\": {\n" +
+                "      \"properties\": {\n" +
+                "        \"message\": {\n" +
+                "          \"type\": \"text\"\n" +
+                "        }\n" +
+                "      }\n" +
+                "    }\n" +
+                "  }")
+        .get();
 
-<1> <<java-admin-indices-create-index,创建一个索引>>, 名称为 `twitter`
-<2> 它同时添加了一个名为 `tweet` 的映射类型.
+<1> 创建一个名为 `twitter` 的索引
+<2> 它同时添加了一个名为 `tweet` 的映射类型。
 
 
 PUT 映射 API 还允许用户给现有的索引添加一个新的类型:
 
 .. code-block:: java
 
-    client.admin().indices().preparePutMapping("twitter")   <1>
-            .setType("user")                                <2>
-            .setSource("{\n" +                              <3>
+    client.admin().indices().preparePutMapping("twitter")    <1>
+            .setType("user")                                 <2>
+            .setSource("{\n" +                               <3>
                     "  \"properties\": {\n" +
                     "    \"name\": {\n" +
-                    "      \"type\": \"string\"\n" +
+                    "      \"type\": \"text\"\n" +
                     "    }\n" +
                     "  }\n" +
                     "}")
@@ -96,10 +95,10 @@ PUT 映射 API 还允许用户给现有的索引添加一个新的类型:
     client.admin().indices().preparePutMapping("twitter")
             .setType("user")
             .setSource("{\n" +
-                    "    \"user\":{\n" +                        <4>
+                    "    \"user\":{\n" +                      <4>
                     "        \"properties\": {\n" +
                     "            \"name\": {\n" +
-                    "                \"type\": \"string\"\n" +
+                    "                \"type\": \"text\"\n" +
                     "            }\n" +
                     "        }\n" +
                     "    }\n" +
@@ -116,11 +115,11 @@ PUT 映射 API 还允许用户给现有的索引添加一个新的类型:
 .. code-block:: java
 
     client.admin().indices().preparePutMapping("twitter")   <1>
-            .setType("tweet")                               <2>
+            .setType("user")                               <2>
             .setSource("{\n" +                              <3>
                     "  \"properties\": {\n" +
                     "    \"user_name\": {\n" +
-                    "      \"type\": \"string\"\n" +
+                    "      \"type\": \"text\"\n" +
                     "    }\n" +
                     "  }\n" +
                     "}")
@@ -196,7 +195,7 @@ PUT 映射 API 还允许用户给现有的索引添加一个新的类型:
 集群管理
 ****************************************
 
-要访问集群 Java API, 你需要在 <<java-admin,`AdminClient`>> 对象上调用 `cluster()` 方法:
+要访问集群 Java API, 你需要在 `AdminClient` 对象上调用 `cluster()` 方法:
 
 .. code-block:: java
 
@@ -282,35 +281,29 @@ PUT 映射 API 还允许用户给现有的索引添加一个新的类型:
 <2> 如果不是 `GREEN` 抛出异常
 
 
-索引脚本 API
+存储脚本 API
 ========================================
 
-索引脚本 API 允许用户和存储在 Elasticsearch 索引中的脚本和模板进行交互. 它可以用来创建, 更新, 查询以及删除索引脚本和模板.
+存储脚本 API 允许用户和存储在 Elasticsearch 索引中的脚本和模板进行交互。它可以用来创建, 更新, 查询以及删除存储的脚本和模板。
 
 .. code-block:: java
 
-    PutIndexedScriptResponse = client.preparePutIndexedScript()
-    			 .setScriptLang("groovy")
-    			 .setId("script1")
-    			 .setSource("_score * doc['my_numeric_field'].value")
-    			 .execute()
-    			 .actionGet();
+    PutStoredScriptResponse response = client.admin().cluster().preparePutStoredScript()
+                    .setId("script1")
+                    .setContent(new BytesArray("{\"script\": {\"lang\": \"painless\", \"source\": \"_score * doc['my_numeric_field'].value\"} }"), XContentType.JSON)
+                    .get();
 
-    GetIndexedScriptResponse = client.prepareGetIndexedScript()
-    			    .setScriptLang("groovy")
-    			    .setId("script1")
-    			    .execute()
-    			    .actionGet();
+    GetStoredScriptResponse response = client().admin().cluster().prepareGetStoredScript()
+                    .setId("script1")
+                    .get();
 
-    DeleteIndexedScriptResponse = client.prepareDeleteIndexedScript()
-    			    .setScriptLang("groovy")
-    			    .setId("script1")
-    			    .execute()
-    			    .actionGet();
+    DeleteStoredScriptResponse response = client().admin().cluster().prepareDeleteStoredScript()
+                    .setId("script1")
+                    .get();
 
-想要存储模板, 可以简单地在 scriptLang 上使用 "mustache".
+要存储模板, 可以简单地在 scriptLang 上使用 "mustache"。
 
 脚本语言
 ----------------------------------------
 
-该 API 允许用户设置与之交互的索引脚本的语言. 如果没有设置则将使用默认的脚本语言.
+该 API 允许用户设置与之交互的索引脚本的语言. 如果没有设置则将使用默认的脚本语言。
